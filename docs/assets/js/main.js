@@ -356,6 +356,7 @@
     always: "#always",
     seasonal: "#seasonal",
     order: "#order",
+    experience: "#experience",
     cafe: "#cafe",
     story: "#story",
     visit: "#visit",
