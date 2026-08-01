@@ -760,6 +760,36 @@ table { border-collapse: collapse; width: 100%; }
 .cafe-block { padding: 0 16px; }
 .cafe-media { width: 100%; aspect-ratio: 16/9; border-radius: var(--radius); overflow: hidden; background: var(--bg-section); position: relative; margin-bottom: 16px; }
 .cafe-media img { width: 100%; height: 100%; object-fit: cover; }
+/* 사진 갤러리 (크로스페이드 순환) — 체험관 등 여러 장 보여줄 때 */
+.gallery {
+  position: relative; width: 100%; aspect-ratio: 16/9;
+  border-radius: var(--radius); overflow: hidden;
+  background: var(--bg-section); margin-bottom: 16px;
+}
+.gallery > img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0;
+  transition: opacity .6s ease;
+  filter: saturate(1.10) contrast(1.03);
+}
+.gallery > img.is-active { opacity: 1; }
+.gallery__dots {
+  position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+  z-index: 2; display: flex; align-items: center; gap: 6px;
+  background: rgba(0,0,0,.34); backdrop-filter: blur(6px);
+  padding: 6px 12px; border-radius: 999px;
+}
+.gallery__dot {
+  width: 7px; height: 7px; border-radius: 50%; padding: 0; border: 0;
+  background: rgba(255,255,255,.5); cursor: pointer;
+  transition: background .25s, width .25s, border-radius .25s;
+}
+.gallery__dot.is-active { background: #fff; width: 18px; border-radius: 4px; }
+.gallery__count {
+  font-size: 11px; font-weight: 700; color: rgba(255,255,255,.85);
+  margin-left: 4px; white-space: nowrap;
+}
+
 .cafe-info-tag {
   display: inline-flex; align-items: center; gap: 4px;
   background: var(--green-bg); color: var(--green);

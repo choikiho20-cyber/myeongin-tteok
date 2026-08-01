@@ -288,6 +288,97 @@
   });
 
   /* ══════════════════════════════════════════════
+     3-4. 사진 갤러리 (크로스페이드 순환)
+     - .gallery 안의 <img> 를 늘리면 자동으로 반영됨
+     - data-interval 로 전환 간격 지정 (기본 3200ms)
+     - 파일이 없는 사진은 자동으로 제외
+     - 터치 스와이프 · 닷 클릭 · 호버 시 정지
+     ══════════════════════════════════════════════ */
+  document.querySelectorAll(".gallery").forEach(function (gal) {
+    var imgs = Array.prototype.slice.call(gal.querySelectorAll("img"));
+    if (!imgs.length) return;
+
+    var interval = parseInt(gal.dataset.interval, 10) || 3200;
+    var idx = 0, timer = null;
+
+    // 로드 실패한 사진은 순환에서 제외
+    function drop(img) {
+      var i = imgs.indexOf(img);
+      if (i === -1) return;
+      imgs.splice(i, 1);
+      img.remove();
+      if (idx >= imgs.length) idx = 0;
+      build();
+      show(idx);
+    }
+    imgs.slice().forEach(function (img) {
+      img.addEventListener("error", function () { drop(img); });
+      if (img.complete && img.naturalWidth === 0) drop(img);
+    });
+    if (!imgs.length) return;
+
+    var dots = document.createElement("div");
+    dots.className = "gallery__dots";
+    var count = document.createElement("span");
+    count.className = "gallery__count";
+
+    function build() {
+      dots.innerHTML = "";
+      if (imgs.length < 2) { if (dots.parentNode) dots.remove(); return; }
+      imgs.forEach(function (_, i) {
+        var b = document.createElement("button");
+        b.className = "gallery__dot";
+        b.type = "button";
+        b.setAttribute("aria-label", (i + 1) + "번 사진 보기");
+        b.addEventListener("click", function () { show(i); start(); });
+        dots.appendChild(b);
+      });
+      dots.appendChild(count);
+      if (!dots.parentNode) gal.appendChild(dots);
+    }
+
+    function show(i) {
+      idx = ((i % imgs.length) + imgs.length) % imgs.length;
+      imgs.forEach(function (img, j) {
+        img.classList.toggle("is-active", j === idx);
+        img.setAttribute("aria-hidden", j !== idx);
+      });
+      var ds = dots.querySelectorAll(".gallery__dot");
+      for (var k = 0; k < ds.length; k++) ds[k].classList.toggle("is-active", k === idx);
+      count.textContent = (idx + 1) + " / " + imgs.length;
+    }
+
+    function start() {
+      stop();
+      if (imgs.length > 1) timer = setInterval(function () { show(idx + 1); }, interval);
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+    gal.addEventListener("mouseenter", stop);
+    gal.addEventListener("mouseleave", start);
+
+    // 터치 스와이프
+    var sx = 0, sy = 0, swiping = false;
+    gal.addEventListener("touchstart", function (e) {
+      sx = e.touches[0].clientX; sy = e.touches[0].clientY; swiping = true; stop();
+    }, { passive: true });
+    gal.addEventListener("touchend", function (e) {
+      if (!swiping) return;
+      swiping = false;
+      var t = e.changedTouches[0];
+      var dx = t.clientX - sx;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(t.clientY - sy)) {
+        show(dx < 0 ? idx + 1 : idx - 1);
+      }
+      start();
+    });
+
+    build();
+    show(0);
+    start();
+  });
+
+  /* ══════════════════════════════════════════════
      4. 이미지 자리표시자
      ══════════════════════════════════════════════ */
   document.querySelectorAll("img[data-ph]").forEach(function (img) {
