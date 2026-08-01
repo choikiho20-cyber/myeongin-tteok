@@ -657,6 +657,28 @@ table { border-collapse: collapse; width: 100%; }
 .danja-hero__media img { width: 100%; height: 100%; object-fit: cover; }
 .danja-hero__name { font-size: 20px; font-weight: 900; color: var(--ink); margin-bottom: 8px; }
 .danja-hero__desc { font-size: 13px; color: var(--sub); line-height: 1.8; margin-bottom: 16px; }
+/* 보관 온도 배지 (냉동 / 상온) — 상품명에 "(냉동)" 을 붙이면 단서처럼 읽혀
+   정보성 아이콘으로 표시해 거부감을 줄임 */
+.temp-badge {
+  position: absolute; top: 10px; right: 10px; z-index: 2;
+  width: 54px; height: 54px; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 1px; color: #fff; text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+.temp-badge__ico { font-size: 17px; line-height: 1; }
+.temp-badge__label { font-size: 11px; font-weight: 800; letter-spacing: -.02em; }
+/* 흰 글씨 4.5:1 을 만족하도록 레퍼런스보다 진하게 */
+.temp-badge--cold { background: #3D6E9C; }   /* 냉동 */
+.temp-badge--room { background: #A8602A; }   /* 상온 */
+
+/* 상품 카드용 축소 버전 */
+.prd-item__media .temp-badge {
+  width: 40px; height: 40px; top: 8px; right: 8px;
+}
+.prd-item__media .temp-badge__ico { font-size: 13px; }
+.prd-item__media .temp-badge__label { font-size: 9.5px; }
+
 /* 재료·차별점 배지 */
 .spec-list {
   list-style: none; padding: 0; margin: 0 0 20px;
@@ -969,7 +991,8 @@ table { border-collapse: collapse; width: 100%; }
   .notice { max-width: var(--wrap); margin-inline: auto; }
 
   .danja-hero { flex-direction: row; align-items: flex-start; }
-  .danja-hero__media { flex: 0 0 400px; aspect-ratio: 1/1; }
+  /* 대표 사진이 4:3 이라 프레임도 맞춤 (1:1 이면 좌우 25% 가 잘림) */
+  .danja-hero__media { flex: 0 0 520px; aspect-ratio: 4/3; }
   .danja-hero__info { flex: 1; }
 
   .season-grid { grid-template-columns: repeat(4, 1fr); }
