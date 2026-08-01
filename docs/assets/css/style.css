@@ -371,7 +371,6 @@ table { border-collapse: collapse; width: 100%; }
       rgba(255,255,255,.95) 0%, rgba(255,255,255,.90) 70%,
       rgba(255,255,255,.25) 88%, rgba(255,255,255,0) 100%);
   }
-  .hero__slide--t1 > img { object-position: 62% center; }
 }
 
 /* 좌우 화살표 (창억떡 동일) */
@@ -852,6 +851,10 @@ table { border-collapse: collapse; width: 100%; }
    (기본 .hero__arrow 규칙보다 뒤에 와야 적용됨) */
 @media (max-width: 719px) {
   .hero__arrow { display: none; }
+  /* 좌우가 크게 잘리므로 피사체(오른쪽)가 남도록 크롭 위치 조정
+     (기본 .hero__slide > img 규칙보다 뒤에 와야 적용됨) */
+  .hero__slide--t1 > img { object-position: 62% center; }
+  .hero__slide--t3 > img { object-position: 58% center; }
 }
 
 @media (min-width: 600px) {
