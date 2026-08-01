@@ -14,17 +14,31 @@
   --ink:        #222222;
   --ink-deep:   #000000;
   --sub:        #555555;
-  --muted:      #757575;
+  --muted:      #6A6A6A;  /* 색 배경 위에서도 4.5:1 유지되도록 조정 */
   --light:      #999999;
   --line:       #EEEEEE;
   --line-dark:  #DDDDDD;
-  --accent:     #8B6E3B;
-  --accent-bg:  #F9F3EA;
-  --accent-deep:#6B5429;
+
+  /* 브랜드 컬러 — 체험관 간판 로고의 자주(플럼) 계열
+     ⚠️ 실제 로고 색과 다르면 이 3줄만 고치면 사이트 전체에 반영됩니다 */
+  --accent:     #713F55;
+  --accent-deep:#4F2A3B;
+  --accent-bg:  #F7EFF3;
+
+  /* 식감·온기용 보조색 (가격·계절 등) */
+  --gold:       #8A5E2B;
+  --gold-bg:    #FBF4EA;
   --point:      #D4883A;
   --point-bg:   #FFF5EA;
   --green:      #5E7050;
   --green-bg:   #EEF2EA;
+
+  /* 섹션별 배경 — 떡 종류에 맞춘 색 리듬 */
+  --tint-danja: #F4F0E4;   /* 당귀잎 · 승검초단자 */
+  --tint-season:#F3F6F1;   /* 제철 */
+  --tint-order: #FBF4EA;   /* 주문떡 */
+  --tint-exp:   #F7EFF3;   /* 체험관 */
+  --tint-cafe:  #F6F1EC;   /* 떡카페 */
 
   --font-sans:  "Noto Sans KR", "Pretendard", -apple-system, BlinkMacSystemFont,
                 "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
@@ -84,6 +98,13 @@ table { border-collapse: collapse; width: 100%; }
   font-size: 13px; color: var(--muted); text-align: center; margin-top: 6px;
 }
 .section-divider { width: 100%; height: 8px; background: var(--bg-section); }
+
+/* 섹션별 배경 색 리듬 — 떡은 눈으로도 먹는다 */
+#products   { background: var(--tint-danja); }
+#seasonal   { background: var(--tint-season); }
+#order      { background: var(--tint-order); }
+#experience { background: var(--tint-exp); }
+#cafe       { background: var(--tint-cafe); }
 
 /* ---------- 4. 버튼 ---------- */
 .btn {
@@ -352,7 +373,7 @@ table { border-collapse: collapse; width: 100%; }
      0 0 6px rgba(255,255,255,1), 0 0 16px rgba(255,255,255,.95);
 }
 .hero__overlay--light .hero__title { color: var(--ink-deep); }
-.hero__overlay--light .hero__title em { color: var(--accent-deep); }
+.hero__overlay--light .hero__title em { color: var(--accent); }
 .hero__overlay--light .hero__desc { color: var(--ink); }
 .hero__overlay--light .hero__cta {
   background: rgba(255,255,255,.92); border: 1px solid var(--ink);
@@ -643,7 +664,7 @@ table { border-collapse: collapse; width: 100%; }
 }
 .danja-option:first-child { border-top: 1px solid var(--line); }
 .danja-option__name { font-size: 14px; font-weight: 600; color: var(--ink); }
-.danja-option__price { font-size: 16px; font-weight: 800; color: var(--accent-deep); }
+.danja-option__price { font-size: 16px; font-weight: 800; color: var(--gold); }
 .btn--lg { padding: 14px 28px; font-size: 15px; font-weight: 800; border-radius: 8px; }
 .btn--accent { background: var(--accent); color: #fff; transition: background .15s; }
 .btn--accent:hover { background: var(--accent-deep); }
@@ -816,11 +837,11 @@ table { border-collapse: collapse; width: 100%; }
 /* ---------- 15. 푸터 (창억 스타일: 밝은 그레이) ---------- */
 .footer { background: var(--bg-section); color: var(--muted); padding: 32px 0 24px; }
 .footer__brand { font-size: 16px; font-weight: 800; color: var(--ink); margin-bottom: 10px; }
-.footer__desc { font-size: 12px; line-height: 2; color: var(--light); }
+.footer__desc { font-size: 12px; line-height: 2; color: var(--muted); }
 .footer__nav { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 16px 0; font-size: 12px; font-weight: 600; }
 .footer__nav a { color: var(--sub); }
 .footer__nav a:hover { color: var(--ink); }
-.footer__bottom { border-top: 1px solid var(--line); padding-top: 16px; margin-top: 16px; font-size: 11px; color: var(--light); line-height: 1.9; }
+.footer__bottom { border-top: 1px solid var(--line); padding-top: 16px; margin-top: 16px; font-size: 11px; color: var(--muted); line-height: 1.9; }
 .footer__bottom strong { color: var(--sub); font-weight: 700; }
 .footer a:hover { color: var(--ink); }
 
