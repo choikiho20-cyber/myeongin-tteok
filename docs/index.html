@@ -269,7 +269,7 @@
           </div>
 
           <!-- 슬라이드 2: 명인의 손 (영상 권장) — "아무나 못 만든다" 신뢰 -->
-          <div class="hero__slide hero__slide--t2" data-shot="banner-02.mp4 · 명인이 떡 빚는 손 (영상)" role="group" aria-roledescription="slide" aria-label="2 / 5">
+          <div class="hero__slide hero__slide--t2" data-shot="banner-02.mp4 · 명인이 떡 빚는 손 (영상)" data-duration="6000" role="group" aria-roledescription="slide" aria-label="2 / 5">
             <video src="assets/images/banner-02.mp4" poster="assets/images/banner-02.jpg"
                    autoplay muted loop playsinline preload="metadata"
                    aria-label="이연순 명인이 떡을 빚는 모습" data-hero></video>
@@ -293,7 +293,7 @@
           </div>
 
           <!-- 슬라이드 4: 떡카페 체험 (영상 권장) — "가보고 싶다" 방문 유도 -->
-          <div class="hero__slide hero__slide--t4" data-shot="banner-04.mp4 · 떡카페 체험 장면 (영상)" role="group" aria-roledescription="slide" aria-label="4 / 5">
+          <div class="hero__slide hero__slide--t4" data-shot="banner-04.mp4 · 떡카페 체험 장면 (영상)" data-duration="6000" role="group" aria-roledescription="slide" aria-label="4 / 5">
             <video src="assets/images/banner-04.mp4" poster="assets/images/banner-04.jpg"
                    autoplay muted loop playsinline preload="metadata"
                    aria-label="제천 떡카페에서 떡 만들기 체험을 하는 모습" data-hero></video>
@@ -359,12 +359,13 @@
         </div>
 
         <div class="shoot-item">
-          <div class="shoot-item__head"><span class="shoot-item__no">2</span><b>명인이 떡 빚는 손</b> <em class="is-video">영상 5~8초</em></div>
+          <div class="shoot-item__head"><span class="shoot-item__no">2</span><b>명인이 떡 빚는 손</b> <em class="is-video">영상 6초 · 2:1</em></div>
           <p class="shoot-item__role">역할 — "아무나 못 만든다" 신뢰와 권위</p>
           <ul class="shoot-item__list">
             <li>얼굴 전체보다 <b>손 + 떡</b> 위주로 촬영</li>
             <li>반죽을 빚거나 잣가루를 묻히는 동작 중 촬영</li>
-            <li>앞치마·작업복이 살짝 보이면 좋음</li>
+            <li>손과 떡은 <b>화면 정중앙</b>에 — 가장자리는 잘립니다</li>
+            <li>첫 장면과 끝 장면을 비슷하게 (반복 재생 시 튐 방지)</li>
             <li>가로 촬영 필수, 손떨림 없이 고정</li>
           </ul>
           <code class="shoot-item__file">banner-02.mp4 (+ 대표컷 banner-02.jpg)</code>
@@ -382,7 +383,7 @@
         </div>
 
         <div class="shoot-item">
-          <div class="shoot-item__head"><span class="shoot-item__no">4</span><b>떡카페 체험 장면</b> <em class="is-video">영상 5~8초</em></div>
+          <div class="shoot-item__head"><span class="shoot-item__no">4</span><b>떡카페 체험 장면</b> <em class="is-video">영상 6초 · 2:1</em></div>
           <p class="shoot-item__role">역할 — "가보고 싶다" 방문·체험 유도</p>
           <ul class="shoot-item__list">
             <li>손님이 떡 만들기 체험하는 장면 (촬영 동의 필수)</li>
@@ -406,7 +407,9 @@
 
         <p class="shoot-guide__note">
           영상은 <b>2번·4번만</b> 권장합니다. 5개 모두 영상이면 모바일 데이터 소모와 로딩 지연으로
-          이탈률이 올라갑니다. 영상 파일은 각 5MB 이하, 소리 없이 재생됩니다.
+          이탈률이 올라갑니다. 영상 파일은 각 5MB 이하, 소리 없이 재생됩니다.<br>
+          <b>비율 2:1 · 길이 6초</b>로 맞춰 주세요. 영상 슬라이드는 6초, 사진 슬라이드는 4.5초 머뭅니다.
+          길이를 바꾸려면 <code>data-duration</code> 값도 함께 수정해야 합니다.
         </p>
       </div>
     </details>

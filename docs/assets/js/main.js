@@ -53,20 +53,39 @@
         slides[j].setAttribute("aria-hidden", j !== current);
         slides[j].setAttribute("aria-label", (j + 1) + " / " + total);
       }
+
+      // 현재 슬라이드의 영상은 처음부터 재생
+      // (loop 상태로 계속 돌기 때문에 그냥 두면 중간 장면부터 보임)
+      var vid = slides[current].querySelector("video");
+      if (vid) {
+        try {
+          vid.currentTime = 0;
+          var p = vid.play();
+          if (p && p.catch) p.catch(function () {});
+        } catch (e) {}
+      }
     }
 
     function nextSlide() { goTo(current + 1); }
     function prevSlide() { goTo(current - 1); }
 
-    // 자동재생
+    // 자동재생 — 슬라이드마다 머무는 시간을 다르게 줄 수 있음
+    // (영상 슬라이드는 data-duration 으로 영상 길이만큼 지정)
+    function slideDuration(idx) {
+      var ms = parseInt(slides[idx].dataset.duration, 10);
+      return isNaN(ms) ? INTERVAL : ms;
+    }
     function startAuto() {
       stopAuto();
       if (isPlaying && total > 1) {
-        autoTimer = setInterval(nextSlide, INTERVAL);
+        autoTimer = setTimeout(function () {
+          nextSlide();
+          startAuto();
+        }, slideDuration(current));
       }
     }
     function stopAuto() {
-      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+      if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
     }
 
     // 화살표
