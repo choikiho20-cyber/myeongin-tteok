@@ -364,12 +364,19 @@ table { border-collapse: collapse; width: 100%; }
 /* 좁은 화면: 3:1 배너가 가로로 잘려 피사체 위에 글이 올라감
    → 텍스트를 하단으로 내리고 세로 스크림으로 가독성 확보 */
 @media (max-width: 719px) {
-  .hero__slide { height: 340px; }
+  .hero__slide { height: 380px; }
   .hero__overlay { justify-content: flex-end; padding: 24px 20px 62px; }
+  /* 사진이 지워지지 않도록 아래쪽에만 옅게 — 가독성은 글자 후광이 담당 */
   .hero__overlay--light {
     background: linear-gradient(to top,
-      rgba(255,255,255,.95) 0%, rgba(255,255,255,.90) 70%,
-      rgba(255,255,255,.25) 88%, rgba(255,255,255,0) 100%);
+      rgba(255,255,255,.80) 0%, rgba(255,255,255,.52) 38%,
+      rgba(255,255,255,.18) 66%, rgba(255,255,255,0) 88%);
+  }
+  /* 스크림이 옅어진 만큼 글자 후광을 강화 */
+  .hero__overlay--light .hero__title,
+  .hero__overlay--light .hero__desc {
+    text-shadow: 0 0 5px rgba(255,255,255,1), 0 0 14px rgba(255,255,255,.95),
+                 0 1px 3px rgba(255,255,255,.9);
   }
 }
 
