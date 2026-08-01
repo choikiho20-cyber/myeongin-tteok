@@ -334,6 +334,44 @@ table { border-collapse: collapse; width: 100%; }
 }
 .hero__cta:hover { background: rgba(255,255,255,.3); border-color: #fff; }
 
+/* 밝은 사진용 오버레이 (창억떡 스타일: 좌측 어두운 텍스트 + 외곽선 버튼) */
+.hero__overlay--light {
+  background: linear-gradient(90deg,
+    rgba(255,255,255,.72) 0%, rgba(255,255,255,.42) 42%, rgba(255,255,255,0) 68%);
+}
+.hero__overlay--light .hero__badge {
+  background: rgba(255,255,255,.9); color: var(--accent-deep);
+  box-shadow: 0 1px 6px rgba(0,0,0,.06);
+}
+.hero__overlay--light .hero__title {
+  color: var(--ink-deep); text-shadow: none;
+}
+.hero__overlay--light .hero__title em { color: var(--accent); }
+.hero__overlay--light .hero__desc {
+  color: var(--sub); text-shadow: none;
+}
+.hero__overlay--light .hero__cta {
+  background: transparent; border: 1px solid var(--ink);
+  border-radius: 2px; color: var(--ink); backdrop-filter: none;
+  font-weight: 600; letter-spacing: .01em;
+}
+.hero__overlay--light .hero__cta:hover {
+  background: var(--ink); border-color: var(--ink); color: #fff;
+}
+
+/* 좁은 화면: 3:1 배너가 가로로 잘려 피사체 위에 글이 올라감
+   → 텍스트를 하단으로 내리고 세로 스크림으로 가독성 확보 */
+@media (max-width: 719px) {
+  .hero__slide { height: 340px; }
+  .hero__overlay { justify-content: flex-end; padding: 24px 20px 62px; }
+  .hero__overlay--light {
+    background: linear-gradient(to top,
+      rgba(255,255,255,.95) 0%, rgba(255,255,255,.90) 70%,
+      rgba(255,255,255,.25) 88%, rgba(255,255,255,0) 100%);
+  }
+  .hero__slide--t1 > img { object-position: 62% center; }
+}
+
 /* 좌우 화살표 (창억떡 동일) */
 .hero__arrow {
   position: absolute; top: 50%; transform: translateY(-50%); z-index: 5;
@@ -509,6 +547,9 @@ table { border-collapse: collapse; width: 100%; }
   padding: 2px 8px; border-radius: 999px;
 }
 .shoot-item__head em.is-video { background: var(--green-bg); color: var(--green); }
+.shoot-item__head em.is-done { background: var(--green); color: #fff; }
+.shoot-item--done { border-left-color: var(--green); opacity: .8; }
+.shoot-item--done .shoot-item__no { background: var(--green); }
 .shoot-item__role { font-size: 12px; color: var(--accent-deep); font-weight: 600; margin-bottom: 8px; }
 .shoot-item__list { display: grid; gap: 4px; margin-bottom: 8px; }
 .shoot-item__list li {
@@ -805,6 +846,12 @@ table { border-collapse: collapse; width: 100%; }
 .notice::before { content: "ⓘ"; font-weight: 800; }
 
 /* ---------- 18. 반응형 ---------- */
+/* 좁은 화면: 화살표가 보이지 않으면서 히어로 텍스트 위 터치를 가로챔 — 스와이프로 대체
+   (기본 .hero__arrow 규칙보다 뒤에 와야 적용됨) */
+@media (max-width: 719px) {
+  .hero__arrow { display: none; }
+}
+
 @media (min-width: 600px) {
   .prd-grid { padding: 0 16px; }
   .prd-item { width: calc(33.333% - 10px); margin-right: 14px; }
