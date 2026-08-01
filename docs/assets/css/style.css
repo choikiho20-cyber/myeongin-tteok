@@ -762,7 +762,7 @@ table { border-collapse: collapse; width: 100%; }
 .cafe-media img { width: 100%; height: 100%; object-fit: cover; }
 /* 사진 갤러리 (크로스페이드 순환) — 체험관 등 여러 장 보여줄 때 */
 .gallery {
-  position: relative; width: 100%; aspect-ratio: 16/9;
+  position: relative; width: 100%; aspect-ratio: 4/3;
   border-radius: var(--radius); overflow: hidden;
   background: var(--bg-section); margin-bottom: 16px;
 }
@@ -962,6 +962,11 @@ table { border-collapse: collapse; width: 100%; }
   .hero__overlay { padding: 56px 60px; }
   .hero__title { font-size: 42px; }
 }
+
+/* 넓은 화면에서 히어로가 너무 납작해지면(4:1 이상) 사진 위아래가 과하게 잘림
+   → 화면이 넓어질수록 높이를 키워 잘림을 줄임 */
+@media (min-width: 1600px) { .hero__slide { height: 560px; } }
+@media (min-width: 2000px) { .hero__slide { height: 620px; } }
 
 /* ---------- 19. 접근성 / 인쇄 ---------- */
 @media (prefers-reduced-motion: reduce) {
