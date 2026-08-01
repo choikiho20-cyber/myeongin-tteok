@@ -335,27 +335,30 @@ table { border-collapse: collapse; width: 100%; }
 .hero__cta:hover { background: rgba(255,255,255,.3); border-color: #fff; }
 
 /* 밝은 사진용 오버레이 (창억떡 스타일: 좌측 어두운 텍스트 + 외곽선 버튼) */
-.hero__overlay--light {
-  background: linear-gradient(90deg,
-    rgba(255,255,255,.76) 0%, rgba(255,255,255,.52) 40%,
-    rgba(255,255,255,.12) 62%, rgba(255,255,255,0) 75%);
-}
+/* 사진을 덮는 흰 막은 두지 않음 — 가독성은 글자 자체의 흰 테두리로 해결
+   (창억떡은 문구가 이미지에 인쇄돼 있어 막이 필요 없는 구조) */
+.hero__overlay--light { background: none; }
 .hero__overlay--light .hero__badge {
   background: rgba(255,255,255,.9); color: var(--accent-deep);
   box-shadow: 0 1px 6px rgba(0,0,0,.06);
 }
-/* 영상은 장면이 계속 바뀌므로 글자 뒤에 흰 후광을 둬 어떤 프레임에서도 읽히게 */
+/* 흰 막이 없으므로 글자 자체에 흰 테두리를 둬 어떤 배경에서도 읽히게
+   (막과 달리 글자 주변만 밝히므로 사진 색이 그대로 살아남) */
 .hero__overlay--light .hero__title,
 .hero__overlay--light .hero__desc {
-  text-shadow: 0 0 4px rgba(255,255,255,.95), 0 1px 12px rgba(255,255,255,.8);
+  text-shadow:
+     1px  1px 0 rgba(255,255,255,.9), -1px  1px 0 rgba(255,255,255,.9),
+     1px -1px 0 rgba(255,255,255,.9), -1px -1px 0 rgba(255,255,255,.9),
+     0 0 6px rgba(255,255,255,1), 0 0 16px rgba(255,255,255,.95);
 }
 .hero__overlay--light .hero__title { color: var(--ink-deep); }
 .hero__overlay--light .hero__title em { color: var(--accent-deep); }
 .hero__overlay--light .hero__desc { color: var(--ink); }
 .hero__overlay--light .hero__cta {
-  background: transparent; border: 1px solid var(--ink);
+  background: rgba(255,255,255,.92); border: 1px solid var(--ink);
   border-radius: 2px; color: var(--ink); backdrop-filter: none;
-  font-weight: 600; letter-spacing: .01em;
+  font-weight: 700; letter-spacing: .01em;
+  box-shadow: 0 2px 10px rgba(0,0,0,.10);
 }
 .hero__overlay--light .hero__cta:hover {
   background: var(--ink); border-color: var(--ink); color: #fff;
@@ -366,18 +369,6 @@ table { border-collapse: collapse; width: 100%; }
 @media (max-width: 719px) {
   .hero__slide { height: 380px; }
   .hero__overlay { justify-content: flex-end; padding: 24px 20px 62px; }
-  /* 사진이 지워지지 않도록 아래쪽에만 옅게 — 가독성은 글자 후광이 담당 */
-  .hero__overlay--light {
-    background: linear-gradient(to top,
-      rgba(255,255,255,.80) 0%, rgba(255,255,255,.52) 38%,
-      rgba(255,255,255,.18) 66%, rgba(255,255,255,0) 88%);
-  }
-  /* 스크림이 옅어진 만큼 글자 후광을 강화 */
-  .hero__overlay--light .hero__title,
-  .hero__overlay--light .hero__desc {
-    text-shadow: 0 0 5px rgba(255,255,255,1), 0 0 14px rgba(255,255,255,.95),
-                 0 1px 3px rgba(255,255,255,.9);
-  }
 }
 
 /* 좌우 화살표 (창억떡 동일) */
@@ -484,6 +475,8 @@ table { border-collapse: collapse; width: 100%; }
   width: 100%; height: 100%;
   object-fit: cover; object-position: center;
   display: block;
+  /* 떡은 눈으로도 먹는다 — 색이 선명하게 보이도록 소폭 보정 */
+  filter: saturate(1.14) contrast(1.04);
 }
 
 /* 미디어 준비 전 — 슬라이드별 색감으로 대체 */
