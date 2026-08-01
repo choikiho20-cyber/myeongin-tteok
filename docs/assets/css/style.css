@@ -423,15 +423,98 @@ table { border-collapse: collapse; width: 100%; }
   .hero-float__icon--blog { font-size: 14px; }
 }
 
-/* 이미지 없을 때 자리표시자 슬라이드 */
-.hero__slide--ph {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 32px; gap: 10px;
-  background: linear-gradient(135deg, #F5EEE6 0%, #E8DDD0 100%);
+/* 슬라이드 미디어 (사진 / 영상 공통) */
+.hero__slide > img,
+.hero__slide > video {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  display: block;
 }
-.hero__slide--ph .ph__icon { font-size: 32px; opacity: .35; }
-.hero__slide--ph .ph__text { font-size: 13px; color: var(--muted); font-weight: 600; }
-.hero__slide--ph .ph__hint { font-size: 11px; color: var(--light); }
+
+/* 미디어 준비 전 — 슬라이드별 색감으로 대체 */
+.hero__slide.is-pending > img,
+.hero__slide.is-pending > video { display: none; }
+.hero__slide--t1 { background: linear-gradient(135deg, #8A6E3F 0%, #C6A468 100%); }
+.hero__slide--t2 { background: linear-gradient(135deg, #4E5F44 0%, #869A73 100%); }
+.hero__slide--t3 { background: linear-gradient(135deg, #8C4A45 0%, #C88676 100%); }
+.hero__slide--t4 { background: linear-gradient(135deg, #6B4A34 0%, #B08A62 100%); }
+.hero__slide--t5 { background: linear-gradient(135deg, #3F5464 0%, #7C97A8 100%); }
+
+/* 준비 중 표시 태그 (우측 상단 — 좌측 정렬 카피와 겹치지 않는 자리) */
+.hero__shot {
+  position: absolute; right: 16px; top: 12px; z-index: 6;
+  display: none; align-items: center; gap: 6px;
+  max-width: calc(100% - 140px);
+  background: rgba(0,0,0,.42); backdrop-filter: blur(6px);
+  color: rgba(255,255,255,.9); border: 1px solid rgba(255,255,255,.25);
+  padding: 4px 12px; border-radius: 999px;
+  font-size: 11px; font-weight: 600; letter-spacing: .01em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.hero__slide.is-pending .hero__shot { display: inline-flex; }
+/* 태그 자리 확보 — 준비중일 때만 오버레이 콘텐츠를 아래로 */
+.hero__slide.is-pending .hero__overlay { padding-top: 68px; }
+
+/* ---------- 6-2. 촬영 가이드 패널 (제작용 · 오픈 전 삭제) ---------- */
+.shoot-guide {
+  max-width: var(--wrap); margin: 16px auto 0; padding: 0 16px;
+}
+.shoot-guide__summary {
+  list-style: none; cursor: pointer;
+  display: flex; align-items: center; gap: 8px;
+  background: var(--point-bg); border: 1px dashed #E2C79E;
+  border-radius: var(--radius-sm); padding: 12px 14px;
+  font-size: 13px; font-weight: 700; color: #7E5C28;
+}
+.shoot-guide__summary::-webkit-details-marker { display: none; }
+.shoot-guide__summary::after { content: "▾"; margin-left: auto; font-size: 12px; }
+.shoot-guide[open] .shoot-guide__summary::after { content: "▴"; }
+.shoot-guide__body {
+  border: 1px solid var(--line); border-top: 0;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  padding: 18px 16px; display: grid; gap: 16px;
+}
+.shoot-guide__intro { font-size: 13px; color: var(--sub); line-height: 1.8; }
+.shoot-guide__intro code,
+.shoot-item__file {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px; background: var(--bg-section); color: var(--accent-deep);
+  padding: 2px 6px; border-radius: 4px;
+}
+.shoot-item {
+  border-left: 3px solid var(--accent); padding-left: 14px;
+}
+.shoot-item__head {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 14px; color: var(--ink); margin-bottom: 4px;
+}
+.shoot-item__no {
+  flex: 0 0 22px; height: 22px; border-radius: 50%;
+  background: var(--accent); color: #fff;
+  display: grid; place-items: center;
+  font-size: 12px; font-weight: 800;
+}
+.shoot-item__head em {
+  font-style: normal; font-size: 11px; font-weight: 700;
+  background: var(--bg-section); color: var(--muted);
+  padding: 2px 8px; border-radius: 999px;
+}
+.shoot-item__head em.is-video { background: var(--green-bg); color: var(--green); }
+.shoot-item__role { font-size: 12px; color: var(--accent-deep); font-weight: 600; margin-bottom: 8px; }
+.shoot-item__list { display: grid; gap: 4px; margin-bottom: 8px; }
+.shoot-item__list li {
+  font-size: 13px; color: var(--sub); line-height: 1.6;
+  padding-left: 12px; position: relative;
+}
+.shoot-item__list li::before {
+  content: ""; position: absolute; left: 0; top: 9px;
+  width: 4px; height: 4px; border-radius: 50%; background: var(--line-dark);
+}
+.shoot-item__file { display: inline-block; }
+.shoot-guide__note {
+  font-size: 12px; color: var(--muted); line-height: 1.8;
+  background: var(--bg-section); border-radius: var(--radius-sm); padding: 12px 14px;
+}
 
 /* ---------- 7. 카테고리 아이콘 바 (가운데 정렬) ---------- */
 .icon-bar {

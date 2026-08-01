@@ -233,6 +233,42 @@
   }
 
   /* ══════════════════════════════════════════════
+     3-3. 히어로 미디어 준비 상태 감지
+     - 사진/영상 파일이 아직 없으면 슬라이드별 색감으로 대체
+     - assets/images/ 에 파일을 넣으면 자동으로 실제 미디어 표시
+     ══════════════════════════════════════════════ */
+  document.querySelectorAll(".hero__slide [data-hero]").forEach(function (media) {
+    var slide = media.closest(".hero__slide");
+    if (!slide) return;
+
+    function markPending() {
+      if (slide.classList.contains("is-pending")) return;
+      slide.classList.add("is-pending");
+
+      var label = slide.dataset.shot;
+      if (label && !slide.querySelector(".hero__shot")) {
+        var tag = document.createElement("span");
+        tag.className = "hero__shot";
+        tag.textContent = "📷 준비 중 — " + label;
+        slide.appendChild(tag);
+      }
+    }
+
+    media.addEventListener("error", markPending, true);
+
+    if (media.tagName === "IMG") {
+      // 스크립트 로드 전에 이미 실패한 경우
+      if (media.complete && media.naturalWidth === 0) markPending();
+    } else {
+      // video: 소스를 못 찾은 상태
+      if (media.networkState === media.NETWORK_NO_SOURCE) markPending();
+      media.addEventListener("stalled", function () {
+        if (media.readyState === 0) markPending();
+      });
+    }
+  });
+
+  /* ══════════════════════════════════════════════
      4. 이미지 자리표시자
      ══════════════════════════════════════════════ */
   document.querySelectorAll("img[data-ph]").forEach(function (img) {
