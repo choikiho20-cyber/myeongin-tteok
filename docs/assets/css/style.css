@@ -657,6 +657,24 @@ table { border-collapse: collapse; width: 100%; }
 .danja-hero__media img { width: 100%; height: 100%; object-fit: cover; }
 .danja-hero__name { font-size: 20px; font-weight: 900; color: var(--ink); margin-bottom: 8px; }
 .danja-hero__desc { font-size: 13px; color: var(--sub); line-height: 1.8; margin-bottom: 16px; }
+/* 재료·차별점 배지 */
+.spec-list {
+  list-style: none; padding: 0; margin: 0 0 20px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+}
+.spec {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--radius-sm); padding: 10px 12px;
+}
+.spec__ico {
+  flex: 0 0 34px; width: 34px; height: 34px; border-radius: 50%;
+  background: var(--accent-bg); display: grid; place-items: center; font-size: 17px;
+}
+.spec__body { display: flex; flex-direction: column; min-width: 0; }
+.spec__body b { font-size: 13px; font-weight: 700; color: var(--ink); line-height: 1.35; }
+.spec__body small { font-size: 11.5px; color: var(--muted); line-height: 1.35; }
+
 .danja-options { list-style: none; padding: 0; margin: 0 0 20px; }
 .danja-option {
   display: flex; justify-content: space-between; align-items: center;
@@ -940,13 +958,15 @@ table { border-collapse: collapse; width: 100%; }
   .prd-item:nth-child(2n), .prd-item:nth-child(3n) { margin-right: 14px; }
   .prd-item:nth-child(4n) { margin-right: 0; }
 
-  /* 우측 고정 SNS 레일(약 62px)이 본문을 덮지 않도록 좌우 여백 확보 */
+  /* 본문도 헤더와 같은 폭(--wrap)으로 제한 — 넓은 화면에서 끝까지 늘어나
+     가격표 같은 양끝정렬 요소가 과도하게 벌어지던 문제 해결
+     좌우 여백 72px 는 우측 고정 SNS 레일(약 62px)이 본문을 덮지 않도록 확보 */
   .section-header, .prd-grid, .danja-hero, .season-grid, .season-note,
   .order-table-wrap, .order-notice, .brand-cards, .story-block,
   .process-grid, .cafe-block, .faq, .visit-block {
-    padding-inline: 72px;
+    max-width: var(--wrap); margin-inline: auto; padding-inline: 72px;
   }
-  .notice { margin-inline: 72px; }
+  .notice { max-width: var(--wrap); margin-inline: auto; }
 
   .danja-hero { flex-direction: row; align-items: flex-start; }
   .danja-hero__media { flex: 0 0 400px; aspect-ratio: 1/1; }
@@ -961,6 +981,16 @@ table { border-collapse: collapse; width: 100%; }
 @media (min-width: 1024px) {
   .hero__overlay { padding: 56px 60px; }
   .hero__title { font-size: 42px; }
+}
+
+/* 화면이 충분히 넓으면 본문이 중앙에 모이므로 좌우 여백을 헤더와 맞춤
+   (이 폭부터는 SNS 레일이 본문 바깥에 위치해 여백을 크게 둘 필요가 없음) */
+@media (min-width: 1300px) {
+  .section-header, .prd-grid, .danja-hero, .season-grid, .season-note,
+  .order-table-wrap, .order-notice, .brand-cards, .story-block,
+  .process-grid, .cafe-block, .faq, .visit-block {
+    padding-inline: 24px;
+  }
 }
 
 /* 넓은 화면에서 히어로가 너무 납작해지면(4:1 이상) 사진 위아래가 과하게 잘림
