@@ -347,7 +347,8 @@ table { border-collapse: collapse; width: 100%; }
 .hero:hover .hero__arrow { opacity: 1; }
 .hero__arrow:hover { background: rgba(255,255,255,.95); }
 .hero__arrow--prev { left: 12px; }
-.hero__arrow--next { right: 12px; }
+/* 우측은 플로팅 SNS 레일(.sns-float)이 쓰므로 그만큼 안쪽으로 */
+.hero__arrow--next { right: 64px; }
 
 /* 하단 인디케이터 (도트 + 카운터) */
 .hero__indicator {
@@ -369,7 +370,7 @@ table { border-collapse: collapse; width: 100%; }
 
 /* 자동재생 일시정지 */
 .hero__pause {
-  position: absolute; bottom: 16px; right: 16px; z-index: 5;
+  position: absolute; bottom: 16px; right: 64px; z-index: 5;
   width: 32px; height: 32px; border-radius: 50%;
   background: rgba(0,0,0,.3); backdrop-filter: blur(4px);
   display: grid; place-items: center;
@@ -378,49 +379,57 @@ table { border-collapse: collapse; width: 100%; }
 }
 .hero:hover .hero__pause { opacity: 1; }
 
-/* 플로팅 SNS 버튼 (히어로 우측) */
-.hero-float {
-  position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
-  z-index: 8; display: flex; flex-direction: column; gap: 8px;
+/* 플로팅 SNS 버튼 (화면 우측 고정 — 스크롤해도 따라옴) */
+.sns-float {
+  position: fixed; right: 16px; top: 50%; transform: translateY(-50%);
+  z-index: 90; display: flex; flex-direction: column; gap: 8px;
 }
-.hero-float__btn {
-  display: flex; align-items: center; gap: 8px;
-  padding: 8px 16px 8px 10px; border-radius: 999px;
+/* 평소엔 아이콘만 — 본문을 가리지 않도록. 마우스/포커스 시 라벨 펼침 */
+.sns-float__btn {
+  display: flex; align-items: center; gap: 0;
+  padding: 6px; border-radius: 12px;
   background: rgba(255,255,255,.92); backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
   box-shadow: 0 2px 12px rgba(0,0,0,.12);
-  text-decoration: none; transition: transform .2s, box-shadow .2s;
-  min-width: 120px;
+  text-decoration: none;
+  transition: gap .2s ease, box-shadow .2s, padding .2s ease;
 }
-.hero-float__btn:hover {
-  transform: translateY(-2px); box-shadow: 0 4px 18px rgba(0,0,0,.18);
+.sns-float__btn:hover, .sns-float__btn:focus-visible {
+  gap: 8px; padding-right: 14px;
+  box-shadow: 0 4px 18px rgba(0,0,0,.18);
 }
-.hero-float__icon {
+.sns-float__icon {
   width: 32px; height: 32px; border-radius: 8px;
   display: grid; place-items: center; flex: 0 0 32px;
 }
-.hero-float__icon--insta {
+.sns-float__icon--insta {
   background: linear-gradient(135deg, #F58529, #DD2A7B, #8134AF, #515BD4);
 }
-.hero-float__icon--youtube {
+.sns-float__icon--youtube {
   background: #FF0000;
 }
-.hero-float__icon--blog {
+.sns-float__icon--blog {
   background: #03C75A; color: #fff;
   font-size: 16px; font-weight: 900; font-family: inherit;
 }
-.hero-float__label {
+.sns-float__label {
   font-size: 13px; font-weight: 700; color: var(--ink);
   white-space: nowrap;
+  max-width: 0; opacity: 0; overflow: hidden;
+  transition: max-width .2s ease, opacity .15s ease;
 }
+.sns-float__btn:hover .sns-float__label,
+.sns-float__btn:focus-visible .sns-float__label { max-width: 90px; opacity: 1; }
 
-/* 모바일: 라벨 숨기고 아이콘만 */
+/* 모바일: 아이콘만 (터치에는 hover가 없으므로 라벨 고정 숨김) */
 @media (max-width: 600px) {
-  .hero-float { right: 10px; gap: 6px; }
-  .hero-float__btn { padding: 6px; min-width: auto; border-radius: 10px; }
-  .hero-float__label { display: none; }
-  .hero-float__icon { width: 28px; height: 28px; border-radius: 7px; }
-  .hero-float__icon svg { width: 16px; height: 16px; }
-  .hero-float__icon--blog { font-size: 14px; }
+  .sns-float { right: 10px; gap: 6px; }
+  .sns-float__btn { padding: 6px; border-radius: 10px; }
+  .sns-float__btn:hover { padding-right: 6px; gap: 0; }
+  .sns-float__label { display: none; }
+  .sns-float__icon { width: 28px; height: 28px; border-radius: 7px; }
+  .sns-float__icon svg { width: 16px; height: 16px; }
+  .sns-float__icon--blog { font-size: 14px; }
 }
 
 /* 슬라이드 미디어 (사진 / 영상 공통) */
@@ -442,9 +451,9 @@ table { border-collapse: collapse; width: 100%; }
 
 /* 준비 중 표시 태그 (우측 상단 — 좌측 정렬 카피와 겹치지 않는 자리) */
 .hero__shot {
-  position: absolute; right: 16px; top: 12px; z-index: 6;
+  position: absolute; right: 64px; top: 12px; z-index: 6;
   display: none; align-items: center; gap: 6px;
-  max-width: calc(100% - 140px);
+  max-width: calc(100% - 200px);
   background: rgba(0,0,0,.42); backdrop-filter: blur(6px);
   color: rgba(255,255,255,.9); border: 1px solid rgba(255,255,255,.25);
   padding: 4px 12px; border-radius: 999px;
@@ -828,11 +837,19 @@ table { border-collapse: collapse; width: 100%; }
   .prd-item:nth-child(2n), .prd-item:nth-child(3n) { margin-right: 14px; }
   .prd-item:nth-child(4n) { margin-right: 0; }
 
-  .danja-hero { flex-direction: row; align-items: flex-start; padding: 0 24px; }
+  /* 우측 고정 SNS 레일(약 62px)이 본문을 덮지 않도록 좌우 여백 확보 */
+  .section-header, .prd-grid, .danja-hero, .season-grid, .season-note,
+  .order-table-wrap, .order-notice, .brand-cards, .story-block,
+  .process-grid, .cafe-block, .faq, .visit-block {
+    padding-inline: 72px;
+  }
+  .notice { margin-inline: 72px; }
+
+  .danja-hero { flex-direction: row; align-items: flex-start; }
   .danja-hero__media { flex: 0 0 400px; aspect-ratio: 1/1; }
   .danja-hero__info { flex: 1; }
 
-  .season-grid { grid-template-columns: repeat(4, 1fr); padding: 0 24px; }
+  .season-grid { grid-template-columns: repeat(4, 1fr); }
 
   .split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
   .split-layout--reverse > :first-child { order: 2; }
@@ -848,7 +865,7 @@ table { border-collapse: collapse; width: 100%; }
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
 @media print {
-  .header, .tabbar, .drawer, .btn, .search-fullscreen { display: none !important; }
+  .header, .tabbar, .drawer, .btn, .search-fullscreen, .sns-float { display: none !important; }
   body { padding: 0; background: #fff; }
 }
 
