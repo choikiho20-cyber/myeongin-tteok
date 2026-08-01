@@ -337,19 +337,21 @@ table { border-collapse: collapse; width: 100%; }
 /* 밝은 사진용 오버레이 (창억떡 스타일: 좌측 어두운 텍스트 + 외곽선 버튼) */
 .hero__overlay--light {
   background: linear-gradient(90deg,
-    rgba(255,255,255,.72) 0%, rgba(255,255,255,.42) 42%, rgba(255,255,255,0) 68%);
+    rgba(255,255,255,.76) 0%, rgba(255,255,255,.52) 40%,
+    rgba(255,255,255,.12) 62%, rgba(255,255,255,0) 75%);
 }
 .hero__overlay--light .hero__badge {
   background: rgba(255,255,255,.9); color: var(--accent-deep);
   box-shadow: 0 1px 6px rgba(0,0,0,.06);
 }
-.hero__overlay--light .hero__title {
-  color: var(--ink-deep); text-shadow: none;
-}
-.hero__overlay--light .hero__title em { color: var(--accent); }
+/* 영상은 장면이 계속 바뀌므로 글자 뒤에 흰 후광을 둬 어떤 프레임에서도 읽히게 */
+.hero__overlay--light .hero__title,
 .hero__overlay--light .hero__desc {
-  color: var(--sub); text-shadow: none;
+  text-shadow: 0 0 4px rgba(255,255,255,.95), 0 1px 12px rgba(255,255,255,.8);
 }
+.hero__overlay--light .hero__title { color: var(--ink-deep); }
+.hero__overlay--light .hero__title em { color: var(--accent-deep); }
+.hero__overlay--light .hero__desc { color: var(--ink); }
 .hero__overlay--light .hero__cta {
   background: transparent; border: 1px solid var(--ink);
   border-radius: 2px; color: var(--ink); backdrop-filter: none;
