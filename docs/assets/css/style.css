@@ -767,7 +767,20 @@ table { border-collapse: collapse; width: 100%; }
 
 /* ---------- 10. 브랜드 스토리 (수상 이력) ---------- */
 .story-block { padding: 0 16px; }
+.story-top { display: flex; flex-direction: column; gap: 18px; }
 .story-media { width: 100%; aspect-ratio: 4/3; border-radius: var(--radius); overflow: hidden; background: var(--bg-section); position: relative; margin-bottom: 20px; }
+
+/* 명인 요약 지표 */
+.story-stats {
+  list-style: none; padding: 0; margin: 16px 0 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+}
+.story-stats li {
+  background: var(--accent-bg); border-radius: var(--radius-sm);
+  padding: 12px 8px; text-align: center;
+}
+.story-stats b { display: block; font-size: 17px; font-weight: 900; color: var(--accent-deep); line-height: 1.2; }
+.story-stats small { display: block; font-size: 11px; color: var(--sub); margin-top: 3px; }
 .story-media img { width: 100%; height: 100%; object-fit: cover; }
 .story-text { font-size: 14px; color: var(--sub); line-height: 1.85; margin-bottom: 20px; }
 
@@ -782,6 +795,34 @@ table { border-collapse: collapse; width: 100%; }
   color: var(--accent); letter-spacing: -.01em;
 }
 .award-text { font-size: 14px; font-weight: 600; color: var(--ink); }
+.award-text small,
+.detail-value small { display: block; font-size: 12px; color: var(--muted); font-weight: 500; margin-top: 1px; }
+
+/* 스토리 섹션 소제목 */
+.story-sub {
+  font-size: 15px; font-weight: 800; color: var(--accent-deep);
+  margin: 24px 0 8px; padding-bottom: 6px;
+  border-bottom: 2px solid var(--accent-bg);
+}
+
+/* 접이식 상세 (전체 이력 등) */
+.more { margin-top: 20px; }
+.more__summary {
+  list-style: none; cursor: pointer;
+  display: flex; align-items: center; gap: 8px;
+  border: 1px solid var(--line-dark); border-radius: var(--radius-sm);
+  padding: 12px 14px; font-size: 13px; font-weight: 700; color: var(--sub);
+  transition: border-color .15s, color .15s;
+}
+.more__summary::-webkit-details-marker { display: none; }
+.more__summary::after { content: "▾"; margin-left: auto; font-size: 12px; }
+.more[open] .more__summary::after { content: "▴"; }
+.more__summary:hover { border-color: var(--accent); color: var(--accent); }
+.more__body { padding: 4px 2px 0; }
+.more__title {
+  font-size: 13px; font-weight: 800; color: var(--muted);
+  margin: 18px 0 2px; letter-spacing: .02em;
+}
 
 /* 제조 과정 */
 .process-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 16px; }
@@ -924,7 +965,7 @@ table { border-collapse: collapse; width: 100%; }
 }
 .ph__icon { font-size: 24px; opacity: .4; }
 .ph__text { font-size: 11px; font-weight: 700; line-height: 1.5; max-width: 200px; }
-.ph__hint { font-size: 10px; color: var(--light); }
+.ph__hint { font-size: 10px; color: var(--muted); }
 .ph-host { position: relative; }
 .ph-host > img.is-missing { visibility: hidden; }
 
@@ -993,6 +1034,11 @@ table { border-collapse: collapse; width: 100%; }
   .danja-hero { flex-direction: row; align-items: flex-start; }
   /* 대표 사진이 4:3 이라 프레임도 맞춤 (1:1 이면 좌우 25% 가 잘림) */
   .danja-hero__media { flex: 0 0 520px; aspect-ratio: 4/3; }
+
+  /* 명인 프로필은 사진 + 소개를 2단으로 (전체폭이면 사진이 800px 로 과하게 커짐) */
+  .story-top { flex-direction: row; align-items: flex-start; gap: 28px; }
+  .story-media { flex: 0 0 360px; margin-bottom: 0; }
+  .story-intro { flex: 1; min-width: 0; }
   .danja-hero__info { flex: 1; }
 
   .season-grid { grid-template-columns: repeat(4, 1fr); }
