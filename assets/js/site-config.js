@@ -50,7 +50,7 @@ const SITE = {
 
   /* 메타 / SEO */
   domain: "myeongin-tteok.com",
-  ogImage: "assets/images/og-cover.jpg",
+  ogImage: "https://myeongin-tteok.com/assets/images/og-cover.jpg",
   themeColor: "#5E7050",
 
   /* 제작 정보 */
