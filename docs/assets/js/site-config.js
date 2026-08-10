@@ -35,10 +35,14 @@ const SITE = {
   naverBooking: "",  // ⚠️ 예약 URL 확인 필요
 
   /* 지도 */
-  naverMapUrl:  "https://map.naver.com/p/search/이연순명인떡",
-  kakaoMapUrl:  "https://place.map.kakao.com/이연순명인떡",
-  googleMapUrl: "https://maps.google.com/?q=충북+제천시+제천북로+138",
-  naverMapEmbed: "https://map.naver.com/p/search/이연순%20명인떡?c=15.00,0,0,0,dh",
+  naverPlaceId: "13443329",
+  naverMapUrl:  "https://map.naver.com/p/entry/place/13443329",
+  kakaoMapUrl:  "https://map.kakao.com/?q=이연순명인떡",
+  googleMapUrl: "https://www.google.com/maps/search/?api=1&query=이연순명인떡",
+  // 네이버 플레이스 기준 실제 좌표 (2026-08-10 확인)
+  lat: 37.1426916,
+  lng: 128.1623969,
+  // ⚠️ 네이버·구글 지도는 iframe 삽입을 차단하므로 embed 대신 링크 방식 사용
 
   /* SNS */
   instagram: "",
