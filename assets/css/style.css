@@ -466,8 +466,9 @@ table { border-collapse: collapse; width: 100%; }
 .sns-float__icon--youtube {
   background: #FF0000;
 }
+/* 네이버 원색(#03C75A)은 흰 글자 대비 2.98 로 미달 → 진하게 조정 */
 .sns-float__icon--blog {
-  background: #03C75A; color: #fff;
+  background: #02914A; color: #fff;
   font-size: 16px; font-weight: 900; font-family: inherit;
 }
 .sns-float__label {
