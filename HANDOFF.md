@@ -1,26 +1,23 @@
 # 이연순 명인떡 홈페이지 — 인수인계 (2026-08-11)
 
+## 도메인 연결 — 완료
+
+DNS 레코드 5개(A ×4 + www CNAME) 저장 완료, 전파 확인됨.
+
+```
+A     @     185.199.108.153 / .109.153 / .110.153 / .111.153
+CNAME www   choikiho20-cyber.github.io.
+```
+
+- GitHub Pages Custom domain = `myeongin-tteok.com`, 루트에 `CNAME` 파일 생성됨
+- HTTPS 인증서 발급 완료(`approved`) — 두 도메인(apex, www) 모두 포함
+- 사이트 내 임시 주소 일괄 교체 완료 (blog.html 2 / posts/1.html 5 / sitemap.xml 3 / robots.txt 1)
+- `site-config.js` 의 `domain` 확인 완료
+
 ## 지금 바로 할 일 (중단 지점)
 
-가비아 DNS 관리툴에서 레코드 5개를 입력하고 **`저장` 버튼을 누르기 직전**이다.
-
-```
-A     @     185.199.108.153
-A     @     185.199.109.153
-A     @     185.199.110.153
-A     @     185.199.111.153
-CNAME www   choikiho20-cyber.github.io.     ← 끝의 점 필수
-```
-
-저장 후 이어서:
-
-1. 전파 확인 — `nslookup myeongin-tteok.com` 또는 RDAP 조회
-2. GitHub 저장소 Settings → Pages → Custom domain 에 `myeongin-tteok.com` 입력
-3. Enforce HTTPS 체크 (인증서 자동 발급, 최대 24시간)
-4. 저장소 루트에 `CNAME` 파일 생성 (내용: `myeongin-tteok.com`)
-5. 사이트 내 주소 일괄 교체 (아래 "주소가 박힌 곳" 참고)
-6. `sitemap.xml` · `robots.txt` 재생성
-7. `assets/js/site-config.js` 의 `domain` 값 확인
+**글해줌 연동** — 아래 "글해줌 연동" 표의 값을 매장 페이지에 입력.
+도메인이 확정됐으므로 이제 AI 발행을 돌려도 된다.
 
 ---
 
@@ -31,8 +28,8 @@ CNAME www   choikiho20-cyber.github.io.     ← 끝의 점 필수
 | 저장소 | `choikiho20-cyber/myeongin-tteok` |
 | 브랜치 | **`master`** (main 아님 — 연동 시 자주 실수) |
 | Pages 소스 | **저장소 루트 `/`** (docs/ 아님 — 아래 이유 참고) |
-| 현재 주소 | https://choikiho20-cyber.github.io/myeongin-tteok/ |
-| 최종 주소 | https://myeongin-tteok.com (DNS 설정 중) |
+| 주소 | https://myeongin-tteok.com (연결 완료) |
+| 옛 주소 | https://choikiho20-cyber.github.io/myeongin-tteok/ (자동 리다이렉트) |
 | 로컬 경로 | `C:\Users\user\Desktop\sotong-sites\myeongin-tteok` |
 
 ### 도메인
@@ -96,10 +93,11 @@ JSON-LD Article / BreadcrumbList
 | 브랜치 | `master` |
 | 데이터 파일 | `posts.json` |
 | 토큰 | 발급한 fine-grained 토큰 |
-| 블로그 실제 주소 | **도메인 연결 후 `https://myeongin-tteok.com`** |
+| 블로그 실제 주소 | `https://myeongin-tteok.com` (끝에 `/` 없이) |
 
-**도메인이 확정될 때까지 AI 발행을 돌리지 말 것.** 글마다 임시 주소가 4곳씩 박히고,
-발행기는 지난 글을 고치지 않는다. 글 50개면 200곳을 손봐야 한다.
+도메인이 확정됐으므로 발행해도 된다. 다만 **블로그 실제 주소를 반드시 커스텀 도메인으로**
+넣을 것 — 발행기는 지난 글의 주소를 고치지 않으므로, 임시 주소로 발행하면
+글 1개당 4곳씩 수동으로 되돌려야 한다.
 
 ---
 
@@ -121,13 +119,17 @@ JSON-LD Article / BreadcrumbList
 ## 주소가 박힌 곳 (도메인 교체 시)
 
 ```
-posts/1.html   4곳  (canonical, og:url, og:image, JSON-LD ×2)
+posts/1.html   5곳  (canonical, og:url, og:image, JSON-LD ×2)
 blog.html      2곳  (canonical, og:url)
-index.html     2곳  (canonical, og:url) — 현재 myeongin-tteok.com 로 되어 있음
+index.html     2곳  (canonical, og:url)
 sitemap.xml    3곳  (자동 재생성됨)
 robots.txt     1곳  (자동 재생성됨)
+CNAME          저장소 루트 (GitHub Pages 가 관리)
 assets/js/site-config.js  domain 값
 ```
+
+전부 `https://myeongin-tteok.com` 으로 통일돼 있다.
+새 글은 발행기가 "블로그 실제 주소" 설정값으로 채우므로 손댈 필요 없다.
 
 ---
 
@@ -159,9 +161,10 @@ python bump-assets.py
 
 ### 기능 (앞서 합의한 순서)
 1. ~~블로그 개설~~ ✅
-2. 글해줌 연동 ← **다음**
-3. 미디어 관리 개선 — 드래그앤드롭, 영상 업로드, alt 입력, 용량 상향(현재 60MB)
-4. 홈페이지 누락분 보완
+2. ~~도메인 연결 · HTTPS · 주소 교체~~ ✅
+3. 글해줌 연동 ← **다음** (토큰 입력은 대표님이 직접)
+4. 미디어 관리 개선 — 드래그앤드롭, 영상 업로드, alt 입력, 용량 상향(현재 60MB)
+5. 홈페이지 누락분 보완
 
 ---
 
