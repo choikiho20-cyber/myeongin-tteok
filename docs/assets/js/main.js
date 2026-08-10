@@ -252,6 +252,42 @@
   }
 
   /* ══════════════════════════════════════════════
+     3-2-2. 계절 카드 펼치기
+     - 카드를 누르면 안내와 문의 버튼이 열림
+     - 한 번에 하나만 열리도록 나머지는 닫음
+     ══════════════════════════════════════════════ */
+  var seasonBtns = document.querySelectorAll(".season-card__btn");
+  if (seasonBtns.length) {
+    seasonBtns.forEach(function (btn) {
+      var detail = document.getElementById(btn.getAttribute("aria-controls"));
+      if (!detail) return;
+
+      btn.addEventListener("click", function () {
+        var willOpen = btn.getAttribute("aria-expanded") !== "true";
+
+        // 다른 카드는 닫기
+        seasonBtns.forEach(function (other) {
+          if (other === btn) return;
+          var d = document.getElementById(other.getAttribute("aria-controls"));
+          other.setAttribute("aria-expanded", "false");
+          if (d) d.hidden = true;
+        });
+
+        btn.setAttribute("aria-expanded", willOpen);
+        detail.hidden = !willOpen;
+      });
+    });
+
+    // 지금 제철인 카드는 처음부터 열어둠
+    var nowCard = document.querySelector(".season-card.is-now .season-card__btn");
+    if (nowCard) {
+      var nowDetail = document.getElementById(nowCard.getAttribute("aria-controls"));
+      nowCard.setAttribute("aria-expanded", "true");
+      if (nowDetail) nowDetail.hidden = false;
+    }
+  }
+
+  /* ══════════════════════════════════════════════
      3-3. 히어로 미디어 준비 상태 감지
      - 사진/영상 파일이 아직 없으면 슬라이드별 색감으로 대체
      - assets/images/ 에 파일을 넣으면 자동으로 실제 미디어 표시

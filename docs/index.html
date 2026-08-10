@@ -622,31 +622,67 @@
       <div class="season-grid reveal">
 
         <div class="season-card" data-months="12,1,2">
-          <div class="season-card__icon">❄️</div>
-          <h3 class="season-card__season">겨울 · 설날</h3>
-          <p class="season-card__months">12 · 1 · 2월</p>
-          <p class="season-card__name">가래떡 · 떡국떡</p>
+          <button class="season-card__btn" type="button"
+                  aria-expanded="false" aria-controls="season-winter">
+            <span class="season-card__icon" aria-hidden="true">❄️</span>
+            <span class="season-card__season">겨울 · 설날</span>
+            <span class="season-card__months">12 · 1 · 2월</span>
+            <span class="season-card__name">가래떡 · 떡국떡</span>
+            <span class="season-card__more">자세히</span>
+          </button>
+          <div class="season-card__detail" id="season-winter" hidden>
+            <p>설 명절에 맞춰 가래떡과 떡국떡을 준비합니다.</p>
+            <p class="season-card__note">수량과 가격은 전화로 문의해 주세요.</p>
+            <a href="tel:050714573051" class="btn btn--accent btn--sm btn--full btn--round">📞 주문·문의</a>
+          </div>
         </div>
 
         <div class="season-card" data-months="3,4">
-          <div class="season-card__icon">🌸</div>
-          <h3 class="season-card__season">봄</h3>
-          <p class="season-card__months">3 · 4월</p>
-          <p class="season-card__name">쑥떡</p>
+          <button class="season-card__btn" type="button"
+                  aria-expanded="false" aria-controls="season-spring">
+            <span class="season-card__icon" aria-hidden="true">🌸</span>
+            <span class="season-card__season">봄</span>
+            <span class="season-card__months">3 · 4월</span>
+            <span class="season-card__name">쑥떡</span>
+            <span class="season-card__more">자세히</span>
+          </button>
+          <div class="season-card__detail" id="season-spring" hidden>
+            <p>봄에 올라온 쑥으로 빚습니다.</p>
+            <p class="season-card__note">수량과 가격은 전화로 문의해 주세요.</p>
+            <a href="tel:050714573051" class="btn btn--accent btn--sm btn--full btn--round">📞 주문·문의</a>
+          </div>
         </div>
 
         <div class="season-card" data-months="5,6,7,8">
-          <div class="season-card__icon">☀️</div>
-          <h3 class="season-card__season">여름</h3>
-          <p class="season-card__months">5 · 6 · 7 · 8월</p>
-          <p class="season-card__name">증편</p>
+          <button class="season-card__btn" type="button"
+                  aria-expanded="false" aria-controls="season-summer">
+            <span class="season-card__icon" aria-hidden="true">☀️</span>
+            <span class="season-card__season">여름</span>
+            <span class="season-card__months">5 · 6 · 7 · 8월</span>
+            <span class="season-card__name">증편</span>
+            <span class="season-card__more">자세히</span>
+          </button>
+          <div class="season-card__detail" id="season-summer" hidden>
+            <p>더운 계절에 맞춰 발효시켜 만드는 증편입니다.</p>
+            <p class="season-card__note">수량과 가격은 전화로 문의해 주세요.</p>
+            <a href="tel:050714573051" class="btn btn--accent btn--sm btn--full btn--round">📞 주문·문의</a>
+          </div>
         </div>
 
         <div class="season-card" data-months="9,10">
-          <div class="season-card__icon">🍂</div>
-          <h3 class="season-card__season">가을 · 추석</h3>
-          <p class="season-card__months">9 · 10월</p>
-          <p class="season-card__name">송편</p>
+          <button class="season-card__btn" type="button"
+                  aria-expanded="false" aria-controls="season-autumn">
+            <span class="season-card__icon" aria-hidden="true">🍂</span>
+            <span class="season-card__season">가을 · 추석</span>
+            <span class="season-card__months">9 · 10월</span>
+            <span class="season-card__name">송편</span>
+            <span class="season-card__more">자세히</span>
+          </button>
+          <div class="season-card__detail" id="season-autumn" hidden>
+            <p>추석에 맞춰 송편을 준비합니다.</p>
+            <p class="season-card__note">수량과 가격은 전화로 문의해 주세요.</p>
+            <a href="tel:050714573051" class="btn btn--accent btn--sm btn--full btn--round">📞 주문·문의</a>
+          </div>
         </div>
 
       </div>

@@ -649,12 +649,40 @@ table { border-collapse: collapse; width: 100%; }
 .season-grid {
   display: grid; grid-template-columns: repeat(2, 1fr);
   gap: 12px; padding: 0 16px;
+  /* 카드를 펼쳤을 때 같은 줄의 닫힌 카드가 함께 늘어나지 않도록 */
+  align-items: start;
 }
 .season-card {
   background: var(--white); border: 1px solid var(--line);
-  border-radius: var(--radius); padding: 20px 16px; text-align: center;
+  border-radius: var(--radius); text-align: center; overflow: hidden;
   transition: border-color .2s, box-shadow .2s;
 }
+/* 카드 전체가 눌리는 버튼 */
+.season-card__btn {
+  display: flex; flex-direction: column; align-items: center;
+  width: 100%; padding: 20px 16px; background: none; border: 0;
+  cursor: pointer; text-align: center;
+  transition: background .15s;
+}
+.season-card__btn:hover { background: var(--accent-bg); }
+.season-card__btn:active { background: var(--accent-bg); transform: scale(.99); }
+.season-card:has(.season-card__btn[aria-expanded="true"]) {
+  border-color: var(--accent); box-shadow: 0 2px 12px rgba(113,63,85,.12);
+}
+.season-card__more {
+  margin-top: 10px; font-size: 11.5px; font-weight: 700; color: var(--accent);
+  display: inline-flex; align-items: center; gap: 3px;
+}
+.season-card__more::after { content: "▾"; font-size: 10px; transition: transform .2s; }
+.season-card__btn[aria-expanded="true"] .season-card__more::after { transform: rotate(180deg); }
+
+.season-card__detail {
+  padding: 0 16px 18px; text-align: left;
+  border-top: 1px solid var(--line);
+}
+.season-card__detail p { font-size: 12.5px; color: var(--sub); line-height: 1.65; margin-top: 14px; }
+.season-card__note { color: var(--muted) !important; }
+.season-card__detail .btn { margin-top: 12px; }
 .season-card.is-now {
   border-color: var(--accent); box-shadow: 0 2px 12px rgba(139,110,59,.12);
 }
