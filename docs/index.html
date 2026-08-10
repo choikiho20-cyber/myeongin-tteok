@@ -1020,16 +1020,25 @@
         <h2 class="section-title reveal" id="visit-title">오시는 길 📍</h2>
       </div>
       <div class="visit-block reveal">
-        <div class="map-frame">
-          <iframe
-            src="https://map.naver.com/p/search/이연순%20명인떡?c=15.00,0,0,0,dh"
-            title="이연순 명인떡 네이버 지도"
-            loading="lazy" allowfullscreen></iframe>
-        </div>
-        <div class="map-links">
-          <a href="https://map.naver.com/p/search/이연순명인떡" class="btn btn--ghost btn--sm" target="_blank" rel="noopener">네이버지도</a>
-          <a href="https://place.map.kakao.com/이연순명인떡" class="btn btn--ghost btn--sm" target="_blank" rel="noopener">카카오맵</a>
-          <a href="https://maps.google.com/?q=충북+제천시+제천북로+138" class="btn btn--ghost btn--sm" target="_blank" rel="noopener">구글지도</a>
+        <!-- 지도 서비스는 iframe 삽입을 차단(x-frame-options)하므로
+             각 지도 앱으로 바로 여는 방식으로 제공 -->
+        <div class="map-open">
+          <p class="map-open__addr">충북 제천시 제천북로 138</p>
+          <p class="map-open__hint">쓰시는 지도 앱에서 바로 열립니다</p>
+          <div class="map-open__btns">
+            <a href="https://map.naver.com/p/search/%EC%9D%B4%EC%97%B0%EC%88%9C%EB%AA%85%EC%9D%B8%EB%96%A1"
+               class="map-open__btn map-open__btn--naver" target="_blank" rel="noopener">
+              <span class="map-open__ico">N</span><span>네이버지도</span>
+            </a>
+            <a href="https://map.kakao.com/?q=%EC%9D%B4%EC%97%B0%EC%88%9C%EB%AA%85%EC%9D%B8%EB%96%A1"
+               class="map-open__btn map-open__btn--kakao" target="_blank" rel="noopener">
+              <span class="map-open__ico">K</span><span>카카오맵</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%9D%B4%EC%97%B0%EC%88%9C%EB%AA%85%EC%9D%B8%EB%96%A1"
+               class="map-open__btn map-open__btn--google" target="_blank" rel="noopener">
+              <span class="map-open__ico">G</span><span>구글지도</span>
+            </a>
+          </div>
         </div>
 
         <div class="detail-list">

@@ -918,6 +918,37 @@ table { border-collapse: collapse; width: 100%; }
 .map-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 10px; }
 .map-links .btn { font-size: 12px; height: 36px; }
 
+/* 지도 앱 열기 — 지도 서비스가 iframe 삽입을 막아 링크 방식으로 제공 */
+.map-open {
+  background: var(--bg-section); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 22px 18px; text-align: center;
+}
+.map-open__addr { font-size: 16px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
+.map-open__hint { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.map-open__btns {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 8px; margin-top: 16px;
+}
+.map-open__btn {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  background: #fff; border: 1px solid var(--line-dark); border-radius: var(--radius-sm);
+  padding: 14px 6px; font-size: 12.5px; font-weight: 700; color: var(--ink);
+  transition: border-color .15s, transform .15s, box-shadow .15s;
+}
+.map-open__btn:hover {
+  border-color: var(--accent); transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+.map-open__ico {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 14px; font-weight: 900; color: #fff;
+}
+/* 네이버 원색(#03C75A)은 흰 글자 대비 2.98 로 미달 → 진하게 조정 */
+.map-open__btn--naver  .map-open__ico { background: #02914A; }
+.map-open__btn--kakao  .map-open__ico { background: #3C1E1E; }
+.map-open__btn--google .map-open__ico { background: #34649A; }
+
 .detail-list { margin-top: 20px; }
 .detail-row {
   display: flex; gap: 14px; padding: 12px 0;
