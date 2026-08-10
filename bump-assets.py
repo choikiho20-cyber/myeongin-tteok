@@ -20,7 +20,7 @@ import os
 import re
 import sys
 
-BASE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "docs")
+BASE = os.path.dirname(os.path.abspath(__file__))
 HTML = os.path.join(BASE, "index.html")
 TARGETS = ["assets/css/style.css", "assets/js/site-config.js", "assets/js/main.js"]
 

@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "myeongin-dev",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["http-server", "C:/Users/user/Desktop/sotong-sites/myeongin-tteok", "-p", "8095", "-c-1"],
+      "port": 8095
+    }
+  ]
+}
