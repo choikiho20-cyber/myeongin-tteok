@@ -15,12 +15,7 @@
   var grid = document.getElementById("mediaGrid");
   if (!grid) return;
 
-  var all = Array.isArray(S.media) ? S.media.slice() : [];
-
-  // 최신순
-  all.sort(function (a, b) {
-    return String(b.date || "").localeCompare(String(a.date || ""));
-  });
+  var all = [];
 
   function ymd(d) {
     if (!d) return "";
@@ -142,5 +137,19 @@
     });
   });
 
-  render("all");
+  /* 자료는 media.json 에서 읽는다.
+     (site-config.js 는 자바스크립트라 손으로 고치다 깨뜨리기 쉬워 분리했다.
+      관리 화면 admin-media.html 에서 이 파일을 만들어 올린다) */
+  function boot(list) {
+    all = Array.isArray(list) ? list.slice() : [];
+    all.sort(function (a, b) {
+      return String(b.date || "").localeCompare(String(a.date || ""));
+    });
+    render("all");
+  }
+
+  fetch("media.json", { cache: "no-cache" })
+    .then(function (r) { return r.ok ? r.json() : []; })
+    .catch(function () { return Array.isArray(S.media) ? S.media : []; })
+    .then(boot);
 })();

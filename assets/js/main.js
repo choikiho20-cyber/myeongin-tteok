@@ -587,13 +587,7 @@
   "use strict";
   var S = window.SITE || {};
 
-  /* 방송·언론 자료가 있을 때만 메뉴·섹션 노출 */
-  var media = Array.isArray(S.media) ? S.media.slice() : [];
-  if (media.length) {
-    document.querySelectorAll("[data-needs-media]").forEach(function (el) {
-      el.removeAttribute("hidden");
-    });
-  }
+  var media = [];
 
   function isVideo(it) {
     return it.video || /\.(mp4|webm)$/i.test(it.src || "");
@@ -636,9 +630,20 @@
     });
   }
 
-  /* ── 방송·언론 미리보기 (최신 3건) ── */
-  var mp = document.getElementById("mediaPreview");
-  if (mp && media.length) {
+  /* ── 방송·언론 미리보기 (최신 3건) ──
+     자료는 media.json 에서 읽는다. 관리 화면(admin-media.html)이 그 파일을 만든다.
+     자료가 0건이면 메뉴와 섹션이 숨겨진 채로 남는다. */
+  function renderMedia(list) {
+    media = Array.isArray(list) ? list.slice() : [];
+    if (!media.length) return;
+
+    document.querySelectorAll("[data-needs-media]").forEach(function (el) {
+      el.removeAttribute("hidden");
+    });
+
+    var mp = document.getElementById("mediaPreview");
+    if (!mp) return;
+
     media.sort(function (a, b) {
       return String(b.date || "").localeCompare(String(a.date || ""));
     });
@@ -696,4 +701,9 @@
       mp.appendChild(a);
     });
   }
+
+  fetch("media.json", { cache: "no-cache" })
+    .then(function (r) { return r.ok ? r.json() : []; })
+    .catch(function () { return Array.isArray(S.media) ? S.media : []; })
+    .then(renderMedia);
 })();

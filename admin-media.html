@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>방송·언론 자료 관리 | 이연순 명인떡</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css?v=a5637ad5">
+  <link rel="stylesheet" href="assets/css/admin.css?v=2938c6f2">
+</head>
+
+<body class="adm">
+  <header class="adm-top">
+    <div class="adm-top__in">
+      <span class="adm-top__title">🛠️ 방송·언론 자료 관리</span>
+      <a href="media.html" class="adm-top__link" target="_blank" rel="noopener">현재 페이지 보기 ↗</a>
+    </div>
+  </header>
+
+  <main class="adm-wrap">
+
+    <!-- 1단계 -->
+    <section class="adm-step">
+      <h2 class="adm-step__h"><span class="adm-step__no">1</span> 자료 추가하기</h2>
+      <p class="adm-step__desc">
+        방송이나 기사 <strong>링크 주소</strong>만 있으면 됩니다.
+        화면을 캡처해서 올리지 마세요 — 방송사·언론사 저작권에 걸립니다.
+      </p>
+
+      <div class="adm-form">
+        <div class="adm-field">
+          <label class="adm-label">종류</label>
+          <div class="adm-radio">
+            <label><input type="radio" name="mtype" value="youtube" checked> 영상 (유튜브)</label>
+            <label><input type="radio" name="mtype" value="article"> 기사 (신문·인터넷)</label>
+          </div>
+        </div>
+
+        <div class="adm-field">
+          <label class="adm-label" for="fUrl">주소 붙여넣기 <span class="adm-req">필수</span></label>
+          <input type="url" id="fUrl" class="adm-input"
+                 placeholder="예) https://www.youtube.com/watch?v=abc123  또는  기사 주소">
+          <p class="adm-hint" id="urlHint">유튜브 주소를 붙여넣으면 영상 번호를 자동으로 찾아냅니다.</p>
+        </div>
+
+        <div class="adm-field">
+          <label class="adm-label" for="fTitle">제목 <span class="adm-req">필수</span></label>
+          <input type="text" id="fTitle" class="adm-input" maxlength="80"
+                 placeholder="예) 이연순 명인의 승검초단자 만들기">
+          <p class="adm-hint">검색에 걸리는 부분입니다. <strong>떡 이름이나 지역명</strong>을 넣으면 좋습니다.</p>
+        </div>
+
+        <div class="adm-row">
+          <div class="adm-field">
+            <label class="adm-label" for="fOutlet">방송사 · 언론사 <span class="adm-req">필수</span></label>
+            <input type="text" id="fOutlet" class="adm-input" maxlength="30"
+                   placeholder="예) KBS 6시 내고향 / 충북일보">
+          </div>
+          <div class="adm-field">
+            <label class="adm-label" for="fDate">날짜</label>
+            <input type="date" id="fDate" class="adm-input">
+          </div>
+        </div>
+
+        <div class="adm-actions">
+          <button type="button" class="adm-btn adm-btn--primary" id="btnAdd">＋ 목록에 추가</button>
+          <button type="button" class="adm-btn" id="btnClear">입력 지우기</button>
+        </div>
+        <p class="adm-error" id="formError" hidden></p>
+      </div>
+    </section>
+
+    <!-- 2단계 -->
+    <section class="adm-step">
+      <h2 class="adm-step__h"><span class="adm-step__no">2</span> 목록 확인 <span class="adm-count" id="cnt">0건</span></h2>
+      <p class="adm-step__desc">
+        홈페이지에 이 순서대로 나옵니다. 날짜가 최신인 것이 위로 갑니다.
+      </p>
+      <div class="adm-list" id="list"></div>
+      <p class="adm-empty" id="listEmpty">아직 추가한 자료가 없습니다.</p>
+    </section>
+
+    <!-- 3단계 -->
+    <section class="adm-step">
+      <h2 class="adm-step__h"><span class="adm-step__no">3</span> 홈페이지에 올리기</h2>
+      <p class="adm-step__desc">
+        아래 버튼을 누르면 <code>media.json</code> 파일이 내려받아집니다.
+        그 파일을 GitHub 저장소에 올리면 끝입니다.
+      </p>
+
+      <div class="adm-actions">
+        <button type="button" class="adm-btn adm-btn--primary adm-btn--lg" id="btnDownload">
+          ⬇ media.json 내려받기
+        </button>
+        <button type="button" class="adm-btn" id="btnCopy">📋 내용 복사</button>
+      </div>
+
+      <ol class="adm-guide">
+        <li><a href="https://github.com/choikiho20-cyber/myeongin-tteok" target="_blank" rel="noopener">저장소 열기 ↗</a> 후 <strong>media.json</strong> 파일을 클릭합니다.</li>
+        <li>오른쪽 위 <strong>연필(✏️) 아이콘</strong>을 누릅니다.</li>
+        <li>내용을 전부 지우고, 위에서 <strong>복사</strong>한 내용을 붙여넣습니다.</li>
+        <li>아래 <strong>Commit changes</strong> 를 누릅니다.</li>
+        <li>1~2분 뒤 홈페이지에 반영됩니다.</li>
+      </ol>
+
+      <div class="adm-note">
+        <strong>파일을 끌어다 놓는 방법도 있습니다.</strong>
+        저장소 화면에서 <em>Add file → Upload files</em> 를 누르고
+        내려받은 <code>media.json</code> 을 끌어다 놓으면 같은 결과가 됩니다.
+      </div>
+
+      <details class="adm-json">
+        <summary>파일 내용 직접 보기</summary>
+        <pre id="jsonOut"></pre>
+      </details>
+    </section>
+
+    <section class="adm-step adm-step--warn">
+      <h2 class="adm-step__h">⚠ 꼭 지켜주세요</h2>
+      <ul class="adm-warn">
+        <li><strong>방송 화면을 캡처해서 올리지 마세요.</strong> 방송사 저작권입니다. 링크만 걸면 문제가 없고, 오히려 신뢰가 올라갑니다.</li>
+        <li><strong>기사 전문을 복사하지 마세요.</strong> 제목과 링크만으로 충분합니다.</li>
+        <li>이 화면은 <strong>검색에 노출되지 않습니다.</strong> 다만 주소를 아는 사람은 열 수 있으니 외부에 공유하지 마세요.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="assets/js/admin-media.js?v=5d8f163c"></script>
+</body>
+</html>

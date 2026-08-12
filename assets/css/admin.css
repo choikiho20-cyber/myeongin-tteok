@@ -1,0 +1,135 @@
+/* 관리 화면 전용 — 손님에게 보이는 페이지가 아니라 실무용 */
+.adm { background: #F4F6F8; }
+
+.adm-top {
+  position: sticky; top: 0; z-index: 20;
+  background: #0A1D3F; color: #fff;
+}
+.adm-top__in {
+  max-width: 900px; margin: 0 auto; padding: 14px 16px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.adm-top__title { font-size: 17px; font-weight: 800; }
+.adm-top__link {
+  color: #BFD4F5; font-size: 14px; font-weight: 600; text-decoration: none;
+  white-space: nowrap;
+}
+.adm-top__link:hover { color: #fff; text-decoration: underline; }
+
+.adm-wrap { max-width: 900px; margin: 0 auto; padding: 20px 16px 80px; }
+
+.adm-step {
+  background: #fff; border: 1px solid #E3E7EC; border-radius: 12px;
+  padding: 22px 20px; margin-bottom: 18px;
+}
+.adm-step--warn { background: #FDF6F5; border-color: #F0C9C4; }
+.adm-step__h {
+  font-size: 18px; font-weight: 800; color: #0A1D3F;
+  display: flex; align-items: center; gap: 10px; margin-bottom: 8px;
+}
+.adm-step__no {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #713F55; color: #fff; font-size: 14px;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.adm-count {
+  margin-left: auto; font-size: 14px; font-weight: 700; color: #713F55;
+  background: #F7EFF3; padding: 3px 12px; border-radius: 999px;
+}
+.adm-step__desc { font-size: 14px; color: #55606C; line-height: 1.7; margin-bottom: 16px; word-break: keep-all; }
+.adm-step__desc code { background: #EEF1F4; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+
+/* 폼 */
+.adm-field { margin-bottom: 15px; }
+.adm-row { display: grid; grid-template-columns: 1fr; gap: 0; }
+.adm-label { display: block; font-size: 14px; font-weight: 700; color: #2B3440; margin-bottom: 6px; }
+.adm-req { font-size: 11px; font-weight: 700; color: #C0392B; margin-left: 4px; }
+.adm-input {
+  width: 100%; font: inherit; font-size: 15px; padding: 11px 13px;
+  border: 1px solid #CFD6DE; border-radius: 8px; background: #fff; color: #222;
+}
+.adm-input:focus { outline: 3px solid #713F55; outline-offset: 1px; border-color: #713F55; }
+.adm-hint { font-size: 13px; color: #6A7580; margin-top: 6px; line-height: 1.6; word-break: keep-all; }
+.adm-radio { display: flex; flex-wrap: wrap; gap: 16px; }
+.adm-radio label { font-size: 15px; display: flex; align-items: center; gap: 6px; cursor: pointer; }
+
+.adm-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+.adm-btn {
+  font: inherit; font-size: 15px; font-weight: 700; cursor: pointer;
+  padding: 11px 20px; border-radius: 8px;
+  border: 1px solid #CFD6DE; background: #fff; color: #2B3440;
+}
+.adm-btn:hover { border-color: #713F55; color: #713F55; }
+.adm-btn:focus-visible { outline: 3px solid #713F55; outline-offset: 2px; }
+.adm-btn--primary { background: #713F55; border-color: #713F55; color: #fff; }
+.adm-btn--primary:hover { background: #5B3145; border-color: #5B3145; color: #fff; }
+.adm-btn--lg { font-size: 16px; padding: 14px 26px; }
+.adm-error {
+  margin-top: 12px; font-size: 14px; font-weight: 600; color: #C0392B;
+  background: #FDEDEC; border: 1px solid #F5C6C2; border-radius: 8px;
+  padding: 10px 13px; line-height: 1.6; word-break: keep-all;
+}
+
+/* 목록 */
+.adm-list { display: flex; flex-direction: column; gap: 10px; }
+.adm-item {
+  display: flex; gap: 12px; align-items: stretch;
+  border: 1px solid #E3E7EC; border-radius: 10px; overflow: hidden; background: #fff;
+}
+.adm-item__thumb {
+  flex: 0 0 96px; background: #EEF1F4;
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.adm-item__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.adm-item__thumb--text {
+  background: linear-gradient(135deg, #713F55, #9A5C79);
+  color: #fff; font-size: 12px; font-weight: 800; text-align: center;
+  padding: 6px; line-height: 1.3; word-break: keep-all;
+}
+.adm-item__body { flex: 1; min-width: 0; padding: 11px 4px 11px 0; display: flex; flex-direction: column; gap: 5px; }
+.adm-item__meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 12.5px; color: #55606C; }
+.adm-item__kind {
+  font-size: 11px; font-weight: 800; color: #fff; background: #713F55;
+  padding: 2px 8px; border-radius: 999px;
+}
+.adm-item__date { color: #8A939D; }
+.adm-item__title { font-size: 15px; font-weight: 700; color: #222; line-height: 1.45; word-break: keep-all; }
+.adm-item__url { font-size: 13px; color: #713F55; text-decoration: none; margin-top: auto; }
+.adm-item__url:hover { text-decoration: underline; }
+.adm-item__tools { display: flex; flex-direction: column; gap: 4px; padding: 10px; justify-content: center; }
+.adm-mini {
+  font: inherit; font-size: 12px; font-weight: 700; cursor: pointer;
+  padding: 5px 9px; border-radius: 6px; border: 1px solid #CFD6DE;
+  background: #fff; color: #55606C; white-space: nowrap;
+}
+.adm-mini:hover:not(:disabled) { border-color: #713F55; color: #713F55; }
+.adm-mini:disabled { opacity: .35; cursor: default; }
+.adm-mini--del { color: #C0392B; border-color: #EBC6C2; }
+.adm-mini--del:hover { background: #FDEDEC; border-color: #C0392B; color: #C0392B; }
+.adm-empty { text-align: center; color: #8A939D; font-size: 14px; padding: 28px 10px; }
+
+/* 안내 */
+.adm-guide { margin: 18px 0 0; padding-left: 22px; }
+.adm-guide li { font-size: 14.5px; color: #2B3440; line-height: 1.9; word-break: keep-all; }
+.adm-guide a { color: #713F55; font-weight: 700; }
+.adm-note {
+  margin-top: 16px; background: #EBF5FB; border-left: 4px solid #3498DB;
+  padding: 13px 15px; border-radius: 0 8px 8px 0;
+  font-size: 14px; color: #2B3440; line-height: 1.75; word-break: keep-all;
+}
+.adm-note code { background: #fff; padding: 2px 6px; border-radius: 4px; }
+.adm-json { margin-top: 16px; }
+.adm-json summary { cursor: pointer; font-size: 14px; font-weight: 700; color: #55606C; }
+.adm-json pre {
+  margin-top: 10px; background: #1E2733; color: #DCE3EA;
+  padding: 14px; border-radius: 8px; overflow-x: auto;
+  font-size: 12.5px; line-height: 1.6;
+}
+.adm-warn { margin: 0; padding-left: 20px; }
+.adm-warn li { font-size: 14.5px; color: #7B2D26; line-height: 1.85; margin-bottom: 6px; word-break: keep-all; }
+
+@media (min-width: 640px) {
+  .adm-row { grid-template-columns: 1fr 200px; gap: 14px; }
+  .adm-item__thumb { flex-basis: 120px; }
+  .adm-item__tools { flex-direction: row; align-items: center; }
+}
