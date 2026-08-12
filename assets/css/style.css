@@ -1308,3 +1308,23 @@ table { border-collapse: collapse; width: 100%; }
   .gal-item, .media-card { transition: none; }
   .gal-item:hover, .media-card:hover { transform: none; }
 }
+
+/* ══════════════════════════════════════════════════════════
+   하위 페이지(갤러리·방송언론·이야기)의 모바일 메뉴
+   이 페이지들에는 서랍(drawer)이 없다. 그래서 모바일에서
+   상단 메뉴를 그대로 보여주되, 가로로 밀어서 볼 수 있게 한다.
+   ══════════════════════════════════════════════════════════ */
+.page-sub .nav-bar { display: block; }
+.page-sub .nav-bar__inner {
+  overflow-x: auto; overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-inline: 8px;
+}
+.page-sub .nav-bar__inner::-webkit-scrollbar { display: none; }
+.page-sub .nav__link { padding: 10px 13px; font-size: 14.5px; }
+
+@media (min-width: 900px) {
+  .page-sub .nav-bar__inner { overflow: visible; padding-inline: 16px; }
+  .page-sub .nav__link { padding: 10px 18px; font-size: 15px; }
+}
