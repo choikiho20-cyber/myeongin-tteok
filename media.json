@@ -1,10 +1,24 @@
 [
   {
-    "type": "youtube",
-    "title": "4대째 만드는 당귀떡 승검초단자 — 생방송 오늘 저녁",
-    "outlet": "MBC 생방송 오늘 저녁",
-    "date": "2022-03-01",
-    "youtubeId": "5yjtbNE16-0"
+    "type": "article",
+    "title": "인절미와 단자, 경단의 차이를 아시나요 — 식품명인체험 15",
+    "outlet": "대한금융신문",
+    "date": "2024-12-15",
+    "url": "https://www.kbanker.co.kr/news/articleView.html?idxno=217734"
+  },
+  {
+    "type": "article",
+    "title": "이연순 식품명인, 2023 한류문화대상 한식 부문 수상",
+    "outlet": "충북일보",
+    "date": "2023-12-28",
+    "url": "https://www.inews365.com/news/article.html?no=795414"
+  },
+  {
+    "type": "article",
+    "title": "제천시, 식품명인 이연순과 함께하는 조리교실 특강 운영",
+    "outlet": "국제뉴스",
+    "date": "2022-11-09",
+    "url": "https://www.gukjenews.com/news/articleView.html?idxno=2588382"
   },
   {
     "type": "youtube",
@@ -12,6 +26,34 @@
     "outlet": "한국농수산식품유통공사",
     "date": "2022-08-30",
     "youtubeId": "mQZxDNjuveE"
+  },
+  {
+    "type": "youtube",
+    "title": "4대째 만드는 당귀떡 승검초단자 — 생방송 오늘 저녁",
+    "outlet": "MBC 생방송 오늘 저녁",
+    "date": "2022-03-01",
+    "youtubeId": "5yjtbNE16-0"
+  },
+  {
+    "type": "article",
+    "title": "'승검초단자 명인' 이연순, 조상의 지혜를 담은 약초떡",
+    "outlet": "조선일보 여성조선",
+    "date": "2015-09-08",
+    "url": "https://www.chosun.com/site/data/html_dir/2015/09/08/2015090802718.html"
+  },
+  {
+    "type": "article",
+    "title": "바게트는 알아도 '승검초단자'는 모른다고? 식품명인과 만들어요",
+    "outlet": "서울시 내 손안에 서울",
+    "date": "",
+    "url": "https://mediahub.seoul.go.kr/archives/2004029"
+  },
+  {
+    "type": "article",
+    "title": "식품명인 4호 이연순 — 한국전통음식연구소 소개",
+    "outlet": "한국전통음식연구소",
+    "date": "",
+    "url": "https://kfr.or.kr/kfr_master/4%ED%98%B8-%EC%9D%B4%EC%97%B0%EC%88%9C-%EB%AA%85%EC%9D%B8/"
   },
   {
     "type": "youtube",
