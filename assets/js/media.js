@@ -110,7 +110,10 @@
     return a;
   }
 
+  var CAT = "youtube";   // 기본으로 여는 묶음
+
   function render(cat) {
+    CAT = cat;
     var list = cat === "all" ? all : all.filter(function (i) { return i.type === cat; });
     grid.innerHTML = "";
     drawn = 0;
@@ -126,7 +129,18 @@
       if (filter) filter.hidden = true;
       if (note) note.hidden = true;
     } else {
-      if (empty) empty.hidden = list.length > 0;
+      if (empty) {
+        empty.hidden = list.length > 0;
+        // 묶음별로 비었을 때는 안내 문구를 그에 맞게 바꾼다
+        var t = empty.querySelector(".media-empty__title");
+        var d = empty.querySelector(".media-empty__desc");
+        if (t && d) {
+          t.textContent = "아직 없습니다";
+          d.textContent = (cat === "article")
+            ? "신문·기사 자료를 모으고 있습니다. 위에서 방송·영상을 먼저 봐주세요."
+            : "방송·영상 자료를 모으고 있습니다. 위에서 신문·기사를 먼저 봐주세요.";
+        }
+      }
       if (filter) filter.hidden = false;
       if (note) note.hidden = false;
     }
@@ -153,7 +167,7 @@
     all.sort(function (a, b) {
       return String(b.date || "").localeCompare(String(a.date || ""));
     });
-    render("all");
+    render(CAT);
   }
 
   fetch("media.json", { cache: "no-cache" })
