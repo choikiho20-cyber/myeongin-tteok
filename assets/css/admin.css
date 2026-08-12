@@ -149,3 +149,7 @@
   font: inherit; font-size: 13px; background: none; border: 0;
   color: #713F55; text-decoration: underline; cursor: pointer; padding: 0 2px;
 }
+
+.adm-check { display: flex; align-items: flex-start; gap: 8px; cursor: pointer; font-size: 15px; }
+.adm-check input { margin-top: 3px; flex: 0 0 auto; }
+.adm-check em { font-style: normal; color: #6A7580; font-size: 13.5px; }

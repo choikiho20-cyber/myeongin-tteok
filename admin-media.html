@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap">
   <link rel="stylesheet" href="assets/css/style.css?v=a5637ad5">
-  <link rel="stylesheet" href="assets/css/admin.css?v=fdd1803d">
+  <link rel="stylesheet" href="assets/css/admin.css?v=a74dc56d">
 </head>
 
 <body class="adm">
@@ -116,7 +116,7 @@
       <h2 class="adm-step__h">🔧 제작사 전용 — 바로 반영</h2>
       <p class="adm-step__desc">
         소통마케팅센터 담당자용입니다. 저장소 열쇠를 넣으면 이 화면에서 바로 홈페이지에 반영됩니다.
-        <strong>열쇠는 이 탭에서만 기억되고, 탭을 닫으면 사라집니다.</strong>
+        GitHub 를 열 필요가 없습니다.
       </p>
 
       <div id="devSetup">
@@ -129,8 +129,18 @@
             공용 컴퓨터에서는 사용하지 마세요.
           </p>
         </div>
+        <div class="adm-field" style="margin-bottom:10px;">
+          <label class="adm-check">
+            <input type="checkbox" id="fRemember">
+            <span>이 컴퓨터에 기억시키기 <em>(다음부터 안 넣어도 됨)</em></span>
+          </label>
+          <p class="adm-hint">
+            체크하지 않으면 탭을 닫을 때 지워집니다.
+            <strong>공용 컴퓨터에서는 체크하지 마세요.</strong>
+          </p>
+        </div>
         <div class="adm-actions">
-          <button type="button" class="adm-btn" id="btnUseToken">이 탭에서 쓰기</button>
+          <button type="button" class="adm-btn" id="btnUseToken">열쇠 등록</button>
         </div>
       </div>
 
@@ -141,6 +151,7 @@
           </button>
           <button type="button" class="adm-btn" id="btnForget">열쇠 지우기</button>
         </div>
+        <p class="adm-hint" id="devWhere" style="margin-top:10px;"></p>
       </div>
 
       <p class="adm-save-msg" id="devMsg" hidden></p>
@@ -158,6 +169,6 @@
     </section>
   </main>
 
-  <script src="assets/js/admin-media.js?v=b6c2a2da"></script>
+  <script src="assets/js/admin-media.js?v=9bb2c904"></script>
 </body>
 </html>

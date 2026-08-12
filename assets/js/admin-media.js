@@ -290,18 +290,36 @@
   var PATH = "media.json";
   var TK = "myeongin_dev_key";
 
+  /* 기본은 탭 단위(sessionStorage). 사용자가 체크했을 때만 이 컴퓨터에 남긴다. */
   function tok() {
-    try { return sessionStorage.getItem(TK) || ""; } catch (e) { return ""; }
+    try {
+      return sessionStorage.getItem(TK) || localStorage.getItem(TK) || "";
+    } catch (e) { return ""; }
   }
-  function setTok(v) {
-    try { v ? sessionStorage.setItem(TK, v) : sessionStorage.removeItem(TK); } catch (e) {}
+  function setTok(v, remember) {
+    try {
+      sessionStorage.removeItem(TK);
+      localStorage.removeItem(TK);
+      if (v) (remember ? localStorage : sessionStorage).setItem(TK, v);
+    } catch (e) {}
     paintDev();
+  }
+  function isRemembered() {
+    try { return !!localStorage.getItem(TK); } catch (e) { return false; }
   }
   function paintDev() {
     var has = !!tok();
     var s = $("devSetup"), r = $("devReady");
     if (s) s.hidden = has;
     if (r) r.hidden = !has;
+    var w = $("devWhere");
+    if (w) {
+      w.textContent = has
+        ? (isRemembered()
+            ? "이 컴퓨터에 기억되어 있습니다."
+            : "이 탭에서만 유효합니다. 탭을 닫으면 지워집니다.")
+        : "";
+    }
   }
   function devMsg(text, isError) {
     var m = $(isError ? "devError" : "devMsg");
@@ -377,9 +395,12 @@
     bUse.addEventListener("click", function () {
       var v = $("fToken").value.trim();
       if (!v) return devMsg("열쇠를 넣어주세요.", true);
-      setTok(v);
+      var remember = $("fRemember") && $("fRemember").checked;
+      setTok(v, remember);
       $("fToken").value = "";
-      devMsg("이 탭에서 쓸 수 있게 됐습니다.");
+      devMsg(remember
+        ? "등록했습니다. 이 컴퓨터에 기억되어 다음부터 안 넣으셔도 됩니다."
+        : "등록했습니다. 이 탭에서만 유효합니다.");
     });
   }
   var bPub = $("btnPublish");
