@@ -36,6 +36,7 @@
     drawn++;
     var lazy = drawn > 3 ? "lazy" : "eager";
     var href = linkOf(it);
+    var bigOutlet = false;
     var a = document.createElement("a");
     a.className = "media-card";
     a.href = href || "#";
@@ -66,6 +67,7 @@
       t.className = "media-card__outlet-big";
       t.textContent = it.outlet || "언론 보도";
       thumb.appendChild(t);
+      bigOutlet = true;   // 아래 메타에서 언론사명을 또 쓰지 않는다
     }
     a.appendChild(thumb);
 
@@ -79,7 +81,8 @@
     kind.className = "media-card__kind";
     kind.textContent = it.type === "youtube" ? "영상" : "기사";
     meta.appendChild(kind);
-    if (it.outlet) {
+    // 썸네일 자리에 언론사명을 크게 넣은 경우엔 여기서 또 쓰지 않는다
+    if (it.outlet && !bigOutlet) {
       var o = document.createElement("span");
       o.className = "media-card__outlet";
       o.textContent = it.outlet;

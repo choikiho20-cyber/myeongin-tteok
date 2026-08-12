@@ -651,6 +651,7 @@
       var href = (it.type === "youtube" && it.youtubeId)
         ? "https://www.youtube.com/watch?v=" + it.youtubeId
         : (it.url || "");
+      var bigOutlet = false;
       var a = document.createElement("a");
       a.className = "media-card";
       a.href = href || "media.html";
@@ -676,6 +677,7 @@
         t.className = "media-card__outlet-big";
         t.textContent = it.outlet || "언론 보도";
         th.appendChild(t);
+        bigOutlet = true;
       }
       a.appendChild(th);
 
@@ -687,7 +689,7 @@
       kind.className = "media-card__kind";
       kind.textContent = it.type === "youtube" ? "영상" : "기사";
       meta.appendChild(kind);
-      if (it.outlet) {
+      if (it.outlet && !bigOutlet) {
         var o = document.createElement("span");
         o.className = "media-card__outlet"; o.textContent = it.outlet;
         meta.appendChild(o);
