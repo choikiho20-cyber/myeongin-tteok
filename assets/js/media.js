@@ -30,7 +30,11 @@
     return it.url || "";
   }
 
+  var drawn = 0;   // 첫 화면에 보이는 카드는 지연 로딩하지 않는다
+
   function card(it) {
+    drawn++;
+    var lazy = drawn > 3 ? "lazy" : "eager";
     var href = linkOf(it);
     var a = document.createElement("a");
     a.className = "media-card";
@@ -45,7 +49,7 @@
       var img = document.createElement("img");
       img.src = "https://img.youtube.com/vi/" + it.youtubeId + "/hqdefault.jpg";
       img.alt = "";
-      img.loading = "lazy";
+      img.loading = lazy;
       thumb.appendChild(img);
       var play = document.createElement("span");
       play.className = "media-card__play";
@@ -53,7 +57,7 @@
       thumb.appendChild(play);
     } else if (it.thumb) {
       var im2 = document.createElement("img");
-      im2.src = it.thumb; im2.alt = ""; im2.loading = "lazy";
+      im2.src = it.thumb; im2.alt = ""; im2.loading = lazy;
       thumb.appendChild(im2);
     } else {
       // 기사에는 대체로 쓸 수 있는 이미지가 없다 — 언론사명을 크게
@@ -106,6 +110,7 @@
   function render(cat) {
     var list = cat === "all" ? all : all.filter(function (i) { return i.type === cat; });
     grid.innerHTML = "";
+    drawn = 0;
     list.forEach(function (it) { grid.appendChild(card(it)); });
 
     var empty = document.getElementById("mediaEmpty");
