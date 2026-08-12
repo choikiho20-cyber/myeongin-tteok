@@ -114,3 +114,7 @@ const SITE = {
   madeByUrl: "https://sotong.kr",
   year: new Date().getFullYear(),
 };
+
+/* const 로 선언한 값은 window 에 붙지 않는다.
+   다른 스크립트에서 window.SITE 로도 읽을 수 있게 명시적으로 걸어둔다. */
+window.SITE = SITE;
