@@ -121,17 +121,21 @@
       up.type = "button"; up.className = "adm-mini"; up.textContent = "▲";
       up.title = "위로";
       up.disabled = i === 0;
-      up.onclick = function () { swap(i, i - 1); };
+      up.onclick = function () { move(it, -1); };
       var down = document.createElement("button");
       down.type = "button"; down.className = "adm-mini"; down.textContent = "▼";
       down.title = "아래로";
       down.disabled = i === items.length - 1;
-      down.onclick = function () { swap(i, i + 1); };
+      down.onclick = function () { move(it, +1); };
       var del = document.createElement("button");
       del.type = "button"; del.className = "adm-mini adm-mini--del"; del.textContent = "삭제";
       del.onclick = function () {
+        // 순번이 아니라 항목 자체로 찾는다.
+        // 순번을 쓰면 목록이 다시 그려진 뒤 엉뚱한 것이 지워질 수 있다.
+        var at = items.indexOf(it);
+        if (at < 0) return;
         if (confirm("이 자료를 목록에서 뺄까요?\n\n" + (it.title || ""))) {
-          items.splice(i, 1); save(); render();
+          items.splice(at, 1); save(); render();
         }
       };
       tools.appendChild(up); tools.appendChild(down); tools.appendChild(del);
@@ -145,9 +149,11 @@
     $("jsonOut").textContent = jsonText();
   }
 
-  function swap(a, b) {
-    if (b < 0 || b >= items.length) return;
-    // 날짜순 정렬이 기본이라, 손으로 옮기면 날짜를 맞바꿔 순서를 고정한다
+  function move(it, dir) {
+    var a = items.indexOf(it);
+    var b = a + dir;
+    if (a < 0 || b < 0 || b >= items.length) return;
+    // 목록은 날짜 최신순으로 정렬된다. 그래서 순서를 바꾸려면 날짜를 맞바꾼다.
     var t = items[a].date; items[a].date = items[b].date; items[b].date = t;
     save(); render();
   }
