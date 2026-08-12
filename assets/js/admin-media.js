@@ -229,9 +229,19 @@
   function copy() {
     var txt = jsonText();
     var done = function () {
+      var m = $("copyMsg");
+      if (m) {
+        m.textContent = items.length
+          ? "✅ 복사했습니다. 카카오톡으로 담당자에게 붙여넣어 보내주세요."
+          : "복사했습니다. (아직 추가한 자료가 없습니다)";
+        m.hidden = false;
+      }
       var b = $("btnCopy"); var old = b.textContent;
-      b.textContent = "✅ 복사했습니다";
-      setTimeout(function () { b.textContent = old; }, 1800);
+      b.textContent = "✅ 복사됨";
+      setTimeout(function () {
+        b.textContent = old;
+        if (m) m.hidden = true;
+      }, 4000);
     };
     if (navigator.clipboard) {
       navigator.clipboard.writeText(txt).then(done, function () { fallback(txt, done); });

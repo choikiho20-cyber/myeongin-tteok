@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap">
   <link rel="stylesheet" href="assets/css/style.css?v=a5637ad5">
-  <link rel="stylesheet" href="assets/css/admin.css?v=2938c6f2">
+  <link rel="stylesheet" href="assets/css/admin.css?v=84d99c95">
 </head>
 
 <body class="adm">
@@ -87,35 +87,29 @@
 
     <!-- 3단계 -->
     <section class="adm-step">
-      <h2 class="adm-step__h"><span class="adm-step__no">3</span> 홈페이지에 올리기</h2>
+      <h2 class="adm-step__h"><span class="adm-step__no">3</span> 담당자에게 보내기</h2>
       <p class="adm-step__desc">
-        아래 버튼을 누르면 <code>media.json</code> 파일이 내려받아집니다.
-        그 파일을 GitHub 저장소에 올리면 끝입니다.
+        아래 버튼을 누르면 내용이 복사됩니다.
+        그대로 <strong>카카오톡으로 담당자에게 보내주세요.</strong> 하루 안에 홈페이지에 올라갑니다.
       </p>
 
       <div class="adm-actions">
-        <button type="button" class="adm-btn adm-btn--primary adm-btn--lg" id="btnDownload">
-          ⬇ media.json 내려받기
+        <button type="button" class="adm-btn adm-btn--primary adm-btn--lg" id="btnCopy">
+          📋 복사하기
         </button>
-        <button type="button" class="adm-btn" id="btnCopy">📋 내용 복사</button>
       </div>
-
-      <ol class="adm-guide">
-        <li><a href="https://github.com/choikiho20-cyber/myeongin-tteok" target="_blank" rel="noopener">저장소 열기 ↗</a> 후 <strong>media.json</strong> 파일을 클릭합니다.</li>
-        <li>오른쪽 위 <strong>연필(✏️) 아이콘</strong>을 누릅니다.</li>
-        <li>내용을 전부 지우고, 위에서 <strong>복사</strong>한 내용을 붙여넣습니다.</li>
-        <li>아래 <strong>Commit changes</strong> 를 누릅니다.</li>
-        <li>1~2분 뒤 홈페이지에 반영됩니다.</li>
-      </ol>
+      <p class="adm-save-msg" id="copyMsg" hidden></p>
 
       <div class="adm-note">
-        <strong>파일을 끌어다 놓는 방법도 있습니다.</strong>
-        저장소 화면에서 <em>Add file → Upload files</em> 를 누르고
-        내려받은 <code>media.json</code> 을 끌어다 놓으면 같은 결과가 됩니다.
+        복사가 잘 안 되면 아래 <strong>「내용 직접 보기」</strong>를 펼쳐서
+        글자를 드래그해 복사하셔도 됩니다.
       </div>
 
       <details class="adm-json">
-        <summary>파일 내용 직접 보기</summary>
+        <summary>내용 직접 보기 · 파일로 내려받기</summary>
+        <div class="adm-actions" style="margin:14px 0;">
+          <button type="button" class="adm-btn" id="btnDownload">⬇ 파일로 내려받기</button>
+        </div>
         <pre id="jsonOut"></pre>
       </details>
     </section>
@@ -125,11 +119,12 @@
       <ul class="adm-warn">
         <li><strong>방송 화면을 캡처해서 올리지 마세요.</strong> 방송사 저작권입니다. 링크만 걸면 문제가 없고, 오히려 신뢰가 올라갑니다.</li>
         <li><strong>기사 전문을 복사하지 마세요.</strong> 제목과 링크만으로 충분합니다.</li>
+        <li>입력하신 내용은 <strong>이 브라우저에만 임시 보관</strong>됩니다. 복사해서 담당자에게 보내야 홈페이지에 올라갑니다.</li>
         <li>이 화면은 <strong>검색에 노출되지 않습니다.</strong> 다만 주소를 아는 사람은 열 수 있으니 외부에 공유하지 마세요.</li>
       </ul>
     </section>
   </main>
 
-  <script src="assets/js/admin-media.js?v=f6954e68"></script>
+  <script src="assets/js/admin-media.js?v=3892498d"></script>
 </body>
 </html>
