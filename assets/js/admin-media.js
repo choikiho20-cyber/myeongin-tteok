@@ -280,6 +280,119 @@
     if (e.key === "Enter") { e.preventDefault(); $("fTitle").focus(); }
   });
 
+  /* ══════════════════════════════════════════════════════
+     제작사 전용 — 이 화면에서 바로 저장소에 반영한다.
+     열쇠는 sessionStorage 에만 둔다(탭을 닫으면 사라짐).
+     디스크에 남기지 않으려는 의도이므로 localStorage 로 바꾸지 말 것.
+     ══════════════════════════════════════════════════════ */
+  var REPO = "choikiho20-cyber/myeongin-tteok";
+  var BRANCH = "master";
+  var PATH = "media.json";
+  var TK = "myeongin_dev_key";
+
+  function tok() {
+    try { return sessionStorage.getItem(TK) || ""; } catch (e) { return ""; }
+  }
+  function setTok(v) {
+    try { v ? sessionStorage.setItem(TK, v) : sessionStorage.removeItem(TK); } catch (e) {}
+    paintDev();
+  }
+  function paintDev() {
+    var has = !!tok();
+    var s = $("devSetup"), r = $("devReady");
+    if (s) s.hidden = has;
+    if (r) r.hidden = !has;
+  }
+  function devMsg(text, isError) {
+    var m = $(isError ? "devError" : "devMsg");
+    var other = $(isError ? "devMsg" : "devError");
+    if (other) other.hidden = true;
+    if (!m) return;
+    m.textContent = text;
+    m.hidden = !text;
+  }
+
+  /* 한글이 섞인 문자열을 base64 로 (GitHub API 가 요구하는 형식) */
+  function b64(str) {
+    var bytes = new TextEncoder().encode(str);
+    var bin = "";
+    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    return btoa(bin);
+  }
+
+  function api(path, opts) {
+    opts = opts || {};
+    opts.headers = Object.assign({
+      "Authorization": "Bearer " + tok(),
+      "Accept": "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28"
+    }, opts.headers || {});
+    return fetch("https://api.github.com/repos/" + REPO + path, opts);
+  }
+
+  function publish() {
+    if (!tok()) return;
+    var btn = $("btnPublish");
+    btn.disabled = true;
+    devMsg("저장소를 확인하는 중...");
+
+    api("/contents/" + PATH + "?ref=" + BRANCH)
+      .then(function (r) {
+        if (r.status === 401) throw new Error("열쇠가 올바르지 않습니다. 다시 확인해 주세요.");
+        if (r.status === 403) throw new Error("이 저장소에 쓸 권한이 없는 열쇠입니다.");
+        if (r.status === 404) return { sha: null };   // 파일이 없으면 새로 만든다
+        if (!r.ok) throw new Error("저장소 확인 실패 (" + r.status + ")");
+        return r.json();
+      })
+      .then(function (cur) {
+        devMsg("홈페이지에 올리는 중...");
+        return api("/contents/" + PATH, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message: "방송·언론 자료 갱신 (" + items.length + "건)",
+            content: b64(jsonText()),
+            branch: BRANCH,
+            sha: cur.sha || undefined
+          })
+        });
+      })
+      .then(function (r) {
+        if (!r.ok) {
+          return r.json().then(function (e) {
+            throw new Error(e.message || ("올리기 실패 (" + r.status + ")"));
+          });
+        }
+        devMsg("✅ 반영했습니다. 1~2분 뒤 홈페이지에 나타납니다. " +
+               "바로 확인하려면 강력 새로고침(Ctrl+Shift+R) 하세요.");
+      })
+      .catch(function (e) {
+        devMsg(e.message || "알 수 없는 오류", true);
+      })
+      .then(function () { btn.disabled = false; });
+  }
+
+  var bUse = $("btnUseToken");
+  if (bUse) {
+    bUse.addEventListener("click", function () {
+      var v = $("fToken").value.trim();
+      if (!v) return devMsg("열쇠를 넣어주세요.", true);
+      setTok(v);
+      $("fToken").value = "";
+      devMsg("이 탭에서 쓸 수 있게 됐습니다.");
+    });
+  }
+  var bPub = $("btnPublish");
+  if (bPub) bPub.addEventListener("click", publish);
+  var bForget = $("btnForget");
+  if (bForget) {
+    bForget.addEventListener("click", function () {
+      setTok("");
+      devMsg("열쇠를 지웠습니다.");
+    });
+  }
+  paintDev();
+
   updateHint();
   load();
 

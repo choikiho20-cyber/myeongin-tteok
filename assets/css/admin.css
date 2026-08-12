@@ -139,3 +139,13 @@
   background: #EAF7EF; border: 1px solid #BEE3CD; border-radius: 8px;
   padding: 11px 14px; line-height: 1.6; word-break: keep-all;
 }
+
+/* 제작사 전용 구역 — 고객 화면과 확실히 구분 */
+.adm-step--dev {
+  background: #F7F9FB; border: 1px dashed #B9C4D0;
+}
+.adm-step--dev .adm-step__h { color: #3C4A5A; }
+.adm-linkbtn {
+  font: inherit; font-size: 13px; background: none; border: 0;
+  color: #713F55; text-decoration: underline; cursor: pointer; padding: 0 2px;
+}

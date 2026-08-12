@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap">
   <link rel="stylesheet" href="assets/css/style.css?v=a5637ad5">
-  <link rel="stylesheet" href="assets/css/admin.css?v=84d99c95">
+  <link rel="stylesheet" href="assets/css/admin.css?v=fdd1803d">
 </head>
 
 <body class="adm">
@@ -87,7 +87,9 @@
 
     <!-- 3단계 -->
     <section class="adm-step">
-      <h2 class="adm-step__h"><span class="adm-step__no">3</span> 담당자에게 보내기</h2>
+      <h2 class="adm-step__h"><span class="adm-step__no">3</span> 홈페이지에 반영</h2>
+
+      <!-- ── 담당자에게 보내기 (기본) ── -->
       <p class="adm-step__desc">
         아래 버튼을 누르면 내용이 복사됩니다.
         그대로 <strong>카카오톡으로 담당자에게 보내주세요.</strong> 하루 안에 홈페이지에 올라갑니다.
@@ -100,11 +102,6 @@
       </div>
       <p class="adm-save-msg" id="copyMsg" hidden></p>
 
-      <div class="adm-note">
-        복사가 잘 안 되면 아래 <strong>「내용 직접 보기」</strong>를 펼쳐서
-        글자를 드래그해 복사하셔도 됩니다.
-      </div>
-
       <details class="adm-json">
         <summary>내용 직접 보기 · 파일로 내려받기</summary>
         <div class="adm-actions" style="margin:14px 0;">
@@ -112,6 +109,42 @@
         </div>
         <pre id="jsonOut"></pre>
       </details>
+    </section>
+
+    <!-- ── 제작사 전용: 바로 반영 ── -->
+    <section class="adm-step adm-step--dev">
+      <h2 class="adm-step__h">🔧 제작사 전용 — 바로 반영</h2>
+      <p class="adm-step__desc">
+        소통마케팅센터 담당자용입니다. 저장소 열쇠를 넣으면 이 화면에서 바로 홈페이지에 반영됩니다.
+        <strong>열쇠는 이 탭에서만 기억되고, 탭을 닫으면 사라집니다.</strong>
+      </p>
+
+      <div id="devSetup">
+        <div class="adm-field">
+          <label class="adm-label" for="fToken">저장소 열쇠 (fine-grained token)</label>
+          <input type="password" id="fToken" class="adm-input" autocomplete="off"
+                 placeholder="github_pat_ ...">
+          <p class="adm-hint">
+            Contents 쓰기 권한이 이 저장소 하나에만 있는 열쇠를 쓰세요.
+            공용 컴퓨터에서는 사용하지 마세요.
+          </p>
+        </div>
+        <div class="adm-actions">
+          <button type="button" class="adm-btn" id="btnUseToken">이 탭에서 쓰기</button>
+        </div>
+      </div>
+
+      <div id="devReady" hidden>
+        <div class="adm-actions">
+          <button type="button" class="adm-btn adm-btn--primary adm-btn--lg" id="btnPublish">
+            🚀 홈페이지에 바로 반영
+          </button>
+          <button type="button" class="adm-btn" id="btnForget">열쇠 지우기</button>
+        </div>
+      </div>
+
+      <p class="adm-save-msg" id="devMsg" hidden></p>
+      <p class="adm-error" id="devError" hidden></p>
     </section>
 
     <section class="adm-step adm-step--warn">
@@ -125,6 +158,6 @@
     </section>
   </main>
 
-  <script src="assets/js/admin-media.js?v=3892498d"></script>
+  <script src="assets/js/admin-media.js?v=b6c2a2da"></script>
 </body>
 </html>
