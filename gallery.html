@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>갤러리 | 이연순 명인떡</title>
+
+  <meta name="description" content="대한민국 식품명인 제52호 이연순 명인떡의 사진 갤러리. 승검초단자와 인절미 등 상품 사진, 떡 만드는 공정, 제천 전통음식체험관과 떡카페 현장을 모았습니다.">
+  <meta name="keywords" content="이연순명인떡,갤러리,승검초단자,제천떡카페,전통음식체험관,떡사진">
+  <link rel="canonical" href="https://myeongin-tteok.com/gallery.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="이연순 명인떡">
+  <meta property="og:title" content="갤러리 | 이연순 명인떡">
+  <meta property="og:description" content="상품 사진, 떡 만드는 공정, 체험관과 떡카페 현장을 한눈에.">
+  <meta property="og:url" content="https://myeongin-tteok.com/gallery.html">
+  <meta property="og:image" content="https://myeongin-tteok.com/assets/images/og-cover.jpg">
+  <meta property="og:locale" content="ko_KR">
+
+  <meta name="theme-color" content="#713F55">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍡</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css?v=a5637ad5">
+</head>
+
+<body>
+  <a href="#main" class="skip-link">본문으로 바로가기</a>
+
+  <header class="header" role="banner">
+    <div class="header__row1">
+      <a href="./" class="logo" aria-label="이연순 명인떡 홈">
+        <span class="logo__mark">이연순 명인떡</span>
+        <span class="logo__sub">식품명인 제52호</span>
+      </a>
+      <div class="header__right">
+        <a href="./" class="btn btn--ghost btn--sm">홈으로</a>
+        <a href="tel:050714573051" aria-label="전화 걸기" style="font-size:20px;padding:4px;">📞</a>
+      </div>
+    </div>
+    <nav class="nav-bar" aria-label="메인 메뉴">
+      <div class="nav-bar__inner">
+        <a href="./" class="nav__link">홈</a>
+        <a href="./#products" class="nav__link">상품</a>
+        <a href="gallery.html" class="nav__link" aria-current="page">갤러리</a>
+        <a href="media.html" class="nav__link" data-needs-media hidden>방송·언론</a>
+        <a href="./#experience" class="nav__link">체험관</a>
+        <a href="blog.html" class="nav__link">이야기</a>
+        <a href="./#visit" class="nav__link">오시는 길</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="section">
+      <div class="section-header">
+        <h1 class="section-title">갤러리 📷</h1>
+        <p class="section-sub">상품과 제작 공정, 체험관과 떡카페의 모습을 모았습니다</p>
+      </div>
+
+      <div class="gal-filter" role="tablist" aria-label="갤러리 분류">
+        <button class="gal-filter__btn is-active" data-cat="all" role="tab" aria-selected="true">전체</button>
+        <button class="gal-filter__btn" data-cat="product" role="tab" aria-selected="false">상품</button>
+        <button class="gal-filter__btn" data-cat="process" role="tab" aria-selected="false">만드는 과정</button>
+        <button class="gal-filter__btn" data-cat="experience" role="tab" aria-selected="false">체험관</button>
+        <button class="gal-filter__btn" data-cat="cafe" role="tab" aria-selected="false">떡카페</button>
+        <button class="gal-filter__btn" data-cat="store" role="tab" aria-selected="false">매장</button>
+      </div>
+
+      <div class="gal-grid" id="galGrid" aria-live="polite"></div>
+      <p class="gal-empty" id="galEmpty" hidden>이 분류에는 아직 사진이 없습니다.</p>
+    </section>
+  </main>
+
+  <!-- 확대 보기 -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="사진 확대 보기" hidden>
+    <button class="lightbox__close" id="lbClose" aria-label="닫기">✕</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="이전 사진">‹</button>
+    <div class="lightbox__stage" id="lbStage"></div>
+    <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="다음 사진">›</button>
+    <p class="lightbox__cap" id="lbCap"></p>
+  </div>
+
+  <footer class="footer" role="contentinfo">
+    <div class="wrap">
+      <div class="footer__brand">이연순 명인떡</div>
+      <nav class="footer__nav" aria-label="푸터 메뉴">
+        <a href="./">홈</a>
+        <a href="./#products">상품</a>
+        <a href="gallery.html">갤러리</a>
+        <a href="./#experience">체험관</a>
+        <a href="blog.html">이야기</a>
+        <a href="./#visit">오시는 길</a>
+      </nav>
+      <div class="footer__desc">
+        <p>대한민국 식품명인 제52호 · 3대째 이어온 전통의 맛</p>
+        <p>충북 제천시 제천북로 138 · 0507-1457-3051</p>
+        <p>화~일 09:00–19:00 (월요일 휴무)</p>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span id="footerYear">2026</span> 이연순 명인떡. All rights reserved.</p>
+        <p>홈페이지 제작 <a href="https://sotong.kr" target="_blank" rel="noopener"><strong>소통마케팅센터</strong></a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/site-config.js?v=93c9eb9c"></script>
+  <script src="assets/js/gallery.js?v=55eae4c0"></script>
+</body>
+</html>

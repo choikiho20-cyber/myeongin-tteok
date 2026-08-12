@@ -47,6 +47,62 @@ const SITE = {
   /* SNS */
   instagram: "",
   blog: "",
+  youtube: "",           // 채널 주소
+  kakaoChannel: "",      // 카카오톡 채널 (http://pf.kakao.com/_xxxxx)
+
+  /* ══════════════════════════════════════════════════════════
+     상담·예약 폼 주소 (네이버폼 / 구글폼)
+     비워두면 해당 버튼이 화면에 나오지 않습니다.
+     ══════════════════════════════════════════════════════════ */
+  forms: {
+    seasonal:   "",      // 계절 상품 예약 상담
+    experience: "",      // 체험 프로그램 신청
+    bulk:       "",      // 대량·단체 주문 문의
+  },
+
+  /* ══════════════════════════════════════════════════════════
+     방송 · 언론 (media.html)
+     ⚠️ 방송 화면 캡처와 방송사 로고는 방송사 저작권입니다.
+        직접 올리지 말고 ① 방송사가 올린 유튜브 영상을 embed 하거나
+        ② 방송명·날짜만 텍스트로 적고 원문 링크를 거세요.
+
+     type: "youtube" — youtubeId 필수 (주소의 v= 뒤 11자리)
+     type: "article" — url 필수 (기사 원문 링크)
+     비워두면 미디어 섹션·메뉴가 통째로 숨겨집니다.
+     ══════════════════════════════════════════════════════════ */
+  media: [
+    // { type:"youtube", youtubeId:"", title:"", outlet:"KBS 6시 내고향", date:"2024-05-13" },
+    // { type:"article", url:"", title:"", outlet:"충북일보", date:"2024-03-02" },
+  ],
+
+  /* ══════════════════════════════════════════════════════════
+     갤러리 (gallery.html)
+     cat: "product" 상품 | "process" 제작공정 | "experience" 체험관
+          | "cafe" 떡카페 | "store" 매장
+     video: true 면 mp4 로 취급합니다.
+     ══════════════════════════════════════════════════════════ */
+  gallery: [
+    { src: "assets/images/danja-01.jpg",      alt: "승검초단자 선물세트",            cat: "product" },
+    { src: "assets/images/prd-kong.jpg",      alt: "콩 인절미",                     cat: "product" },
+    { src: "assets/images/prd-heukimja.jpg",  alt: "흑임자 인절미",                  cat: "product" },
+    { src: "assets/images/prd-kkaesogeum.jpg",alt: "깨소금 인절미",                  cat: "product" },
+    { src: "assets/images/prd-castella.jpg",  alt: "카스텔라 인절미",                cat: "product" },
+    { src: "assets/images/prd-duteop.jpg",    alt: "두텁떡",                        cat: "product" },
+    { src: "assets/images/banner-02.mp4",     alt: "명인이 손으로 떡을 빚는 모습",     cat: "process", video: true },
+    { src: "assets/images/master-01.jpg",     alt: "이연순 명인",                    cat: "process" },
+    { src: "assets/images/experience-01.jpg", alt: "전통음식체험관 외관",             cat: "experience" },
+    { src: "assets/images/experience-02.jpg", alt: "전통음식체험관 내부 조리 공간",    cat: "experience" },
+    { src: "assets/images/cafe-01.jpg",       alt: "제천 떡카페 내부",               cat: "cafe" },
+    { src: "assets/images/banner-05.jpg",     alt: "매장 외관과 제천 풍경",           cat: "store" },
+  ],
+
+  /* ══════════════════════════════════════════════════════════
+     체험 프로그램 — 가격·시간·정원이 확인되면 채우세요.
+     비워두면 프로그램 표가 나오지 않고 안내문만 보입니다.
+     ══════════════════════════════════════════════════════════ */
+  experiencePrograms: [
+    // { name:"떡 케이크 만들기", price:"", duration:"", capacity:"", note:"" },
+  ],
 
   /* 메타 / SEO */
   domain: "myeongin-tteok.com",

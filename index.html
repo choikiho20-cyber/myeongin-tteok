@@ -42,7 +42,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap">
 
   <!-- 스타일 -->
-  <link rel="stylesheet" href="assets/css/style.css?v=7c9a2da1">
+  <link rel="stylesheet" href="assets/css/style.css?v=a5637ad5">
 
   <!-- 구조화 데이터: LocalBusiness -->
   <script type="application/ld+json">
@@ -215,6 +215,8 @@
         <a href="./" class="nav__link" aria-current="page">홈</a>
         <a href="#products" class="nav__link">상품</a>
         <a href="#story" class="nav__link">브랜드</a>
+        <a href="gallery.html" class="nav__link">갤러리</a>
+        <a href="media.html" class="nav__link" data-needs-media hidden>방송·언론</a>
         <a href="#experience" class="nav__link">체험관</a>
         <a href="#cafe" class="nav__link">떡카페</a>
         <a href="blog.html" class="nav__link">이야기</a>
@@ -993,6 +995,33 @@
 
     <div class="section-divider"></div>
 
+    <!-- ── 갤러리 미리보기 ─────────────────────── -->
+    <section class="section" id="gallery-preview" aria-labelledby="gallery-preview-title">
+      <div class="section-header">
+        <h2 class="section-title reveal" id="gallery-preview-title">갤러리 📷</h2>
+        <p class="section-sub reveal">상품과 만드는 과정, 체험관과 떡카페의 모습</p>
+      </div>
+      <div class="gal-grid" id="galPreview"></div>
+      <div style="margin-top:20px; text-align:center;">
+        <a href="gallery.html" class="btn btn--ghost btn--sm btn--round">사진 전체 보기 »</a>
+      </div>
+    </section>
+
+    <!-- ── 방송·언론 미리보기 (자료 없으면 숨김) ── -->
+    <section class="section section--warm" id="media-preview" data-needs-media hidden
+             aria-labelledby="media-preview-title">
+      <div class="section-header">
+        <h2 class="section-title reveal" id="media-preview-title">방송·언론 📺</h2>
+        <p class="section-sub reveal">이연순 명인이 방송과 신문에 소개된 기록</p>
+      </div>
+      <div class="media-grid" id="mediaPreview"></div>
+      <div style="margin-top:20px; text-align:center;">
+        <a href="media.html" class="btn btn--ghost btn--sm btn--round">전체 보기 »</a>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
     <!-- ── FAQ ─────────────────────────────────── -->
     <section class="section" id="faq" aria-labelledby="faq-title">
       <div class="section-header">
@@ -1095,6 +1124,8 @@
       <nav class="footer__nav" aria-label="푸터 메뉴">
         <a href="#products">상품</a>
         <a href="#story">브랜드</a>
+        <a href="gallery.html">갤러리</a>
+        <a href="media.html" data-needs-media hidden>방송·언론</a>
         <a href="#cafe">떡카페</a>
         <a href="#visit">오시는 길</a>
         <a href="blog.html">이야기</a>
@@ -1158,8 +1189,8 @@
   </nav>
 
   <!-- 스크립트 -->
-  <script src="assets/js/site-config.js?v=237147e7"></script>
-  <script src="assets/js/main.js?v=58d8e901"></script>
+  <script src="assets/js/site-config.js?v=93c9eb9c"></script>
+  <script src="assets/js/main.js?v=7c1ddb8f"></script>
   <script>
     (function () {
       // 스마트스토어 링크 자동 적용

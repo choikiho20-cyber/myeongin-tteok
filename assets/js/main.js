@@ -577,3 +577,123 @@
     });
   }
 })();
+
+/* ══════════════════════════════════════════════
+   9. 갤러리 · 방송/언론 미리보기 (메인 페이지)
+   - 데이터는 site-config.js 한 곳에서 관리한다
+   - 방송/언론 자료가 없으면 메뉴와 섹션을 통째로 숨긴다
+   ══════════════════════════════════════════════ */
+(function () {
+  "use strict";
+  var S = window.SITE || {};
+
+  /* 방송·언론 자료가 있을 때만 메뉴·섹션 노출 */
+  var media = Array.isArray(S.media) ? S.media.slice() : [];
+  if (media.length) {
+    document.querySelectorAll("[data-needs-media]").forEach(function (el) {
+      el.removeAttribute("hidden");
+    });
+  }
+
+  function isVideo(it) {
+    return it.video || /\.(mp4|webm)$/i.test(it.src || "");
+  }
+
+  /* ── 갤러리 미리보기 (앞 8장) ── */
+  var gp = document.getElementById("galPreview");
+  if (gp) {
+    var items = (Array.isArray(S.gallery) ? S.gallery : []).slice(0, 8);
+    if (!items.length) {
+      var sec = document.getElementById("gallery-preview");
+      if (sec) sec.hidden = true;
+    }
+    items.forEach(function (it) {
+      var a = document.createElement("a");
+      a.className = "gal-item";
+      a.href = "gallery.html";
+      a.setAttribute("aria-label", (it.alt || "사진") + " — 갤러리로 이동");
+
+      if (isVideo(it)) {
+        var v = document.createElement("video");
+        v.src = it.src; v.muted = true; v.loop = true;
+        v.playsInline = true; v.autoplay = true;
+        v.setAttribute("preload", "metadata");
+        a.appendChild(v);
+        var b = document.createElement("span");
+        b.className = "gal-item__badge";
+        b.textContent = "▶ 영상";
+        a.appendChild(b);
+      } else {
+        var img = document.createElement("img");
+        img.src = it.src; img.alt = it.alt || ""; img.loading = "lazy";
+        a.appendChild(img);
+      }
+      var cap = document.createElement("span");
+      cap.className = "gal-item__cap";
+      cap.textContent = it.alt || "";
+      a.appendChild(cap);
+      gp.appendChild(a);
+    });
+  }
+
+  /* ── 방송·언론 미리보기 (최신 3건) ── */
+  var mp = document.getElementById("mediaPreview");
+  if (mp && media.length) {
+    media.sort(function (a, b) {
+      return String(b.date || "").localeCompare(String(a.date || ""));
+    });
+    media.slice(0, 3).forEach(function (it) {
+      var href = (it.type === "youtube" && it.youtubeId)
+        ? "https://www.youtube.com/watch?v=" + it.youtubeId
+        : (it.url || "");
+      var a = document.createElement("a");
+      a.className = "media-card";
+      a.href = href || "media.html";
+      if (href) { a.target = "_blank"; a.rel = "noopener"; }
+
+      var th = document.createElement("span");
+      th.className = "media-card__thumb";
+      if (it.type === "youtube" && it.youtubeId) {
+        var im = document.createElement("img");
+        im.src = "https://img.youtube.com/vi/" + it.youtubeId + "/hqdefault.jpg";
+        im.alt = ""; im.loading = "lazy";
+        th.appendChild(im);
+        var pl = document.createElement("span");
+        pl.className = "media-card__play"; pl.textContent = "▶";
+        th.appendChild(pl);
+      } else if (it.thumb) {
+        var im2 = document.createElement("img");
+        im2.src = it.thumb; im2.alt = ""; im2.loading = "lazy";
+        th.appendChild(im2);
+      } else {
+        th.classList.add("media-card__thumb--text");
+        var t = document.createElement("span");
+        t.className = "media-card__outlet-big";
+        t.textContent = it.outlet || "언론 보도";
+        th.appendChild(t);
+      }
+      a.appendChild(th);
+
+      var body = document.createElement("span");
+      body.className = "media-card__body";
+      var meta = document.createElement("span");
+      meta.className = "media-card__meta";
+      var kind = document.createElement("span");
+      kind.className = "media-card__kind";
+      kind.textContent = it.type === "youtube" ? "영상" : "기사";
+      meta.appendChild(kind);
+      if (it.outlet) {
+        var o = document.createElement("span");
+        o.className = "media-card__outlet"; o.textContent = it.outlet;
+        meta.appendChild(o);
+      }
+      body.appendChild(meta);
+      var h = document.createElement("span");
+      h.className = "media-card__title";
+      h.textContent = it.title || "(제목 없음)";
+      body.appendChild(h);
+      a.appendChild(body);
+      mp.appendChild(a);
+    });
+  }
+})();
