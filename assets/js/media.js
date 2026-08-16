@@ -110,54 +110,51 @@
     return a;
   }
 
-  var CAT = "youtube";   // 기본으로 여는 묶음
+  /* 두 묶음을 한 화면에 모두 보여준다.
+     영상은 썸네일이 있어 눈에 잘 띄므로 항상 위에 둔다. */
+  var GROUPS = [
+    { type: "youtube", label: "📺 방송·영상" },
+    { type: "article", label: "📰 신문·기사" },
+  ];
 
-  function render(cat) {
-    CAT = cat;
-    var list = cat === "all" ? all : all.filter(function (i) { return i.type === cat; });
-    grid.innerHTML = "";
-    drawn = 0;
-    list.forEach(function (it) { grid.appendChild(card(it)); });
+  function group(def) {
+    var list = all.filter(function (i) { return i.type === def.type; });
+    if (!list.length) return null;
 
-    var empty = document.getElementById("mediaEmpty");
-    var filter = document.querySelector(".media-filter");
-    var note = document.querySelector(".media-note");
+    var wrap = document.createElement("section");
+    wrap.className = "media-group";
 
-    if (all.length === 0) {
-      // 자료가 하나도 없으면 분류 버튼·안내문까지 숨긴다
-      if (empty) empty.hidden = false;
-      if (filter) filter.hidden = true;
-      if (note) note.hidden = true;
-    } else {
-      if (empty) {
-        empty.hidden = list.length > 0;
-        // 묶음별로 비었을 때는 안내 문구를 그에 맞게 바꾼다
-        var t = empty.querySelector(".media-empty__title");
-        var d = empty.querySelector(".media-empty__desc");
-        if (t && d) {
-          t.textContent = "아직 없습니다";
-          d.textContent = (cat === "article")
-            ? "신문·기사 자료를 모으고 있습니다. 위에서 방송·영상을 먼저 봐주세요."
-            : "방송·영상 자료를 모으고 있습니다. 위에서 신문·기사를 먼저 봐주세요.";
-        }
-      }
-      if (filter) filter.hidden = false;
-      if (note) note.hidden = false;
-    }
+    var h = document.createElement("h2");
+    h.className = "media-group__h";
+    var name = document.createElement("span");
+    name.textContent = def.label;
+    h.appendChild(name);
+    var cnt = document.createElement("span");
+    cnt.className = "media-group__cnt";
+    cnt.textContent = list.length + "건";
+    h.appendChild(cnt);
+    wrap.appendChild(h);
+
+    var g = document.createElement("div");
+    g.className = "media-grid";
+    list.forEach(function (it) { g.appendChild(card(it)); });
+    wrap.appendChild(g);
+    return wrap;
   }
 
-  var btns = document.querySelectorAll(".media-filter .gal-filter__btn");
-  btns.forEach(function (b) {
-    b.addEventListener("click", function () {
-      btns.forEach(function (x) {
-        x.classList.remove("is-active");
-        x.setAttribute("aria-selected", "false");
-      });
-      b.classList.add("is-active");
-      b.setAttribute("aria-selected", "true");
-      render(b.dataset.mcat);
+  function render() {
+    grid.innerHTML = "";
+    drawn = 0;
+    GROUPS.forEach(function (def) {
+      var sec = group(def);
+      if (sec) grid.appendChild(sec);
     });
-  });
+
+    var empty = document.getElementById("mediaEmpty");
+    var note = document.querySelector(".media-note");
+    if (empty) empty.hidden = all.length > 0;
+    if (note) note.hidden = all.length === 0;
+  }
 
   /* 자료는 media.json 에서 읽는다.
      (site-config.js 는 자바스크립트라 손으로 고치다 깨뜨리기 쉬워 분리했다.
@@ -167,7 +164,7 @@
     all.sort(function (a, b) {
       return String(b.date || "").localeCompare(String(a.date || ""));
     });
-    render(CAT);
+    render();
   }
 
   fetch("media.json", { cache: "no-cache" })

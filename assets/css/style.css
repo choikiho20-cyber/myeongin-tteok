@@ -1328,3 +1328,24 @@ table { border-collapse: collapse; width: 100%; }
   .page-sub .nav-bar__inner { overflow: visible; padding-inline: 16px; }
   .page-sub .nav__link { padding: 10px 18px; font-size: 15px; }
 }
+
+/* 방송·언론 — 영상/기사 두 묶음을 한 화면에 (탭 없이 상시 노출) */
+.media-group { margin-bottom: 40px; }
+.media-group:last-child { margin-bottom: 0; }
+.media-group__h {
+  max-width: 1200px; margin: 0 auto 16px; padding-inline: 16px;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 19px; font-weight: 800; color: var(--ink);
+}
+.media-group__h::after {
+  content: ""; flex: 1; height: 1px; background: var(--line-dark);
+}
+.media-group__cnt {
+  order: 1; font-size: 13px; font-weight: 700; color: var(--accent);
+  background: var(--accent-bg); padding: 3px 11px; border-radius: 999px;
+  white-space: nowrap;
+}
+@media (min-width: 600px) {
+  .media-group { margin-bottom: 52px; }
+  .media-group__h { font-size: 21px; }
+}
