@@ -1349,3 +1349,10 @@ table { border-collapse: collapse; width: 100%; }
   .media-group { margin-bottom: 52px; }
   .media-group__h { font-size: 21px; }
 }
+
+/* 상품 가격 — 매장(1팩) / 택배(1kg) 병기 */
+.prd-item__price { line-height: 1.5; word-break: keep-all; }
+.prd-item__unit {
+  font-size: .78em; font-weight: 500; color: var(--muted);
+  margin-left: 1px;
+}
