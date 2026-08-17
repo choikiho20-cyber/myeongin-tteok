@@ -91,6 +91,7 @@ const SITE = {
     { src: "assets/images/prd-ssuknokdu.jpg", alt: "쑥녹두 찹쌀떡",                  cat: "product" },
     { src: "assets/images/prd-oranda.jpg",    alt: "오란다",                        cat: "product" },
     { src: "assets/images/prd-hodu.jpg",      alt: "호두정과",                      cat: "product" },
+    { src: "assets/images/prd-ganjeong.jpg",  alt: "동글이강정",                    cat: "product" },
     { src: "assets/images/banner-02.mp4",     alt: "명인이 손으로 떡을 빚는 모습",     cat: "process", video: true },
     { src: "assets/images/master-01.jpg",     alt: "이연순 명인",                    cat: "process" },
     { src: "assets/images/experience-01.jpg", alt: "전통음식체험관 외관",             cat: "experience" },
