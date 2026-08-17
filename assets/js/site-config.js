@@ -20,15 +20,15 @@ const SITE = {
   /* 외부 링크 */
   smartStoreUrl: "https://smartstore.naver.com/leeys3050",
   smartStoreProducts: {
-    danja10:  "#",  // ⚠️ 개별 상품 URL — 스토어 등록 후 교체
-    danja20:  "#",
-    danja30:  "#",
-    kongInjeolmi:   "#",
-    heukimja:       "#",
-    kkaesogeum:     "#",
-    castella:       "#",
-    ssukNokdu:      "#",
-    duteop:         "#",
+    danja10:      "https://smartstore.naver.com/leeys3050/products/8462088438",
+    danja20:      "https://smartstore.naver.com/leeys3050/products/8462145985",
+    danja30:      "",   // 스토어 미등록
+    kongInjeolmi: "https://smartstore.naver.com/leeys3050/products/13137081082",
+    heukimja:     "https://smartstore.naver.com/leeys3050/products/8461891022",
+    castella:     "https://smartstore.naver.com/leeys3050/products/13137043965",
+    ssukChapssal: "https://smartstore.naver.com/leeys3050/products/8462564488",
+    kkaesogeum:   "",   // 스토어 미등록
+    duteop:       "",   // 스토어 미등록
   },
 
   /* 네이버 예약 */
@@ -88,7 +88,7 @@ const SITE = {
     { src: "assets/images/prd-kkaesogeum.jpg",alt: "깨소금 인절미",                  cat: "product" },
     { src: "assets/images/prd-castella.jpg",  alt: "카스텔라 인절미",                cat: "product" },
     { src: "assets/images/prd-duteop.jpg",    alt: "두텁떡",                        cat: "product" },
-    { src: "assets/images/prd-ssuknokdu.jpg", alt: "쑥녹두 찹쌀떡",                  cat: "product" },
+    { src: "assets/images/prd-ssuknokdu.jpg", alt: "쑥 찹쌀떡",                  cat: "product" },
     { src: "assets/images/prd-oranda.jpg",    alt: "오란다",                        cat: "product" },
     { src: "assets/images/prd-hodu.jpg",      alt: "호두정과",                      cat: "product" },
     { src: "assets/images/prd-ganjeong.jpg",  alt: "동글이강정",                    cat: "product" },
