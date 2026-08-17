@@ -1356,3 +1356,9 @@ table { border-collapse: collapse; width: 100%; }
   font-size: .78em; font-weight: 500; color: var(--muted);
   margin-left: 1px;
 }
+
+/* 섹션 부가 안내 (단위·배송비 등) */
+.section-note {
+  margin-top: 8px; font-size: 14px; color: var(--muted);
+  line-height: 1.6; word-break: keep-all;
+}
