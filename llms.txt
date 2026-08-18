@@ -69,4 +69,10 @@
 
 - [홈](https://myeongin-tteok.com/): 상품, 사계절 떡, 주문 안내, 명인 소개, 제조 공정, 체험, 떡카페, 오시는 길
 - [블로그](https://myeongin-tteok.com/blog.html): 전통 떡과 제천 향토음식에 관한 정보 글
-- [승검초단자란? 당귀잎으로 빚는 명인의 전통 떡](https://myeongin-tteok.com/posts/1.html): 승검초단자는 당귀잎과 찹쌀로 빚어 잣가루를 묻혀 완성하는 전통 떡입니다. 식품명인 제52호 이연순 명인의 대표 품목입니다.
+- [갤러리](https://myeongin-tteok.com/gallery.html): 매장·떡카페·체험관과 상품 사진
+- [방송·언론](https://myeongin-tteok.com/media.html): 방송 출연과 신문 보도 기록
+
+## 글 목록
+
+- [승검초단자란? 당귀잎으로 빚는 명인의 전통 떡](https://myeongin-tteok.com/posts/1.html): 승검초단자는 당귀잎(승검초)과 찹쌀로 빚어 잣가루를 묻힌 전통 떡입니다. 쑥이 아닌 당귀잎, 콩가루가 아닌 잣가루를 쓰는 이유와 구성·가격을 정리했습니다.
+
